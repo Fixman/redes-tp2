@@ -1,23 +1,26 @@
 #!/usr/bin/python
 
-from traceroute import TraceRouter
+from traceroute import RouteTracer
 
 
 def main():
-    tr = TraceRouter('google.com.ar')
-    ip_dst = tr.ip_a_alcanzar()
 
-    ttl = 1
-    alcanzado = False
+    #Universit\`a degli studi di milano - Italia
+    tr = RouteTracer('www.unimi.it')
+    tr.trace_route()
 
-    while not alcanzado:
+    #The University of Queensland - Australia
+    tr = RouteTracer('uq.edu.au')
+    tr.trace_route()
 
-        ip, rtt = tr.nodo_a_distancia(ttl)
-        alcanzado = (ip == ip_dst)
-        ttl += 1
+    #MIT - EEUU
+    tr = RouteTracer('web.mit.edu')
+    tr.trace_route()
 
-        print (ip, rtt)
+    #Keio University - Japon
+    tr = RouteTracer('www.keio.ac.jp')
+    tr.trace_route()
 
-    print "HOST REACHED"
+    
 if __name__=="__main__":
     main()

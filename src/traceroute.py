@@ -4,11 +4,12 @@ import scapy.all as scp
 from collections import Counter
 ICMP_TTL_EXC = 11
 
-class TraceRouter:
+class RouteTracer:
 
-    def __init__(self, dst, times=15):
+    def __init__(self, dst, times=15, hops=30):
         self.dst    = dst
         self.times  = times
+        self.hops   = hops
 
     def ip_a_alcanzar(self):
         pkt = scp.IP(dst=self.dst) / scp.ICMP()
@@ -45,6 +46,27 @@ class TraceRouter:
             ip, tiempo = ("*",0)
 
         return (ip,tiempo)
+
+    def trace_route(self):
+
+        ip_dst = self.ip_a_alcanzar()
+        hops = self.hops
+        ttl = 1
+        alcanzado = False
+
+        while not alcanzado and ttl<=hops:
+
+            ip, rtt = self.nodo_a_distancia(ttl)
+            alcanzado = (ip == ip_dst)
+            ttl += 1
+
+            print (ip, rtt)
+
+        if alcanzado:
+            print "HOST REACHED"
+        else:
+            print "HOST UNKNOW"
+
 
 if __name__=="__main__":
     main()
