@@ -4,7 +4,7 @@ ICMP_TTL_EXC = 11
 
 class RouteTracer:
 
-    def __init__(self, dst, times=15, hops=30):
+    def __init__(self, dst, times=5, hops=30):
         self.dst    = dst
         self.times  = times
         self.hops   = hops
