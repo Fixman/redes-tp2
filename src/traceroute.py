@@ -1,10 +1,11 @@
 import scapy.all as scp
+import socket
 from collections import Counter
 ICMP_TTL_EXC = 11
 
 class RouteTracer:
 
-    def __init__(self, dst, times=5, hops=30):
+    def __init__(self, dst, times=1, hops=30):
         self.dst    = dst
         self.times  = times
         self.hops   = hops
@@ -26,7 +27,7 @@ class RouteTracer:
         dst_ip = pkt.dst
 
         for i in xrange(self.times):
-            ans, unans = scp.sr(pkt, verbose=0, timeout=0.4)
+            ans, unans = scp.sr(pkt, verbose=0, timeout=1)
 
             if ans:
                 rx = ans[0][1]
@@ -46,19 +47,18 @@ class RouteTracer:
 
     def trace_route(self):
         ip_dst = self.ip_a_alcanzar()
-        hops = self.hops
         ttl = 1
-        alcanzado = False
 
-        while not alcanzado and ttl <= hops:
+        print('Trying to reach ip {}.'.format(ip_dst))
+
+        while ttl <= self.hops:
             ip, rtt = self.nodo_a_distancia(ttl)
-            alcanzado = (ip == ip_dst)
             ttl += 1
 
-            print('{}: {}'.format(ip, rtt))
-
-        if alcanzado:
-            print "Host reached."
+            print('{} ({}): {}'.format(socket.gethostbyaddr(ip), ip, rtt))
+            if ip == ip_dst:
+                print "Host reached."
+                break
         else:
             print "Host not reached in {} hops".format(self.hops)
 
