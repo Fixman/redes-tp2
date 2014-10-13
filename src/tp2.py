@@ -3,7 +3,6 @@ from traceroute import RouteTracer
 
 hosts = [
     ('Tsinghua University - China', 'www.tsinghua.edu.cn'),
-    ('Universidade Estadual de Campinas - Brasil', 'www.unicamp.br'),
     ('University of Oxford - Reino Unido', 'www.ox.ac.uk'),
     ('The University of Queensland - Australia', 'uq.edu.au'),
     ('Massachussets Instutite of Technology - Estados Unidos', 'web.mit.edu'),
