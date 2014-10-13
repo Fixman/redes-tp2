@@ -5,7 +5,7 @@ ICMP_TTL_EXC = 11
 
 class RouteTracer:
 
-    def __init__(self, dst, times=1, hops=30):
+    def __init__(self, dst, times=5, hops=30):
         self.dst    = dst
         self.times  = times
         self.hops   = hops
@@ -27,7 +27,7 @@ class RouteTracer:
         dst_ip = pkt.dst
 
         for i in xrange(self.times):
-            ans, unans = scp.sr(pkt, verbose=0, timeout=1)
+            ans, unans = scp.sr(pkt, verbose=0, timeout=30)
 
             if ans:
                 rx = ans[0][1]
@@ -36,29 +36,31 @@ class RouteTracer:
                 if rx.type == ICMP_TTL_EXC:
                     apariciones[rx.src] += 1.0
                     tiempo[rx.src] += (rx.time - tx.sent_time)
+                    break
 
         if len(apariciones) >= 1:
             ip, veces_ip = apariciones.most_common(1)[0]
-            tiempo = tiempo[ip] / veces_ip
+            tiempo = (tiempo[ip] / veces_ip) * 1000 # Tiempo en milisegundos
         else:
-            ip, tiempo = ("*", 0)
+            ip, tiempo = ('*', 0)
 
         return (ip, tiempo)
 
     def trace_route(self):
         ip_dst = self.ip_a_alcanzar()
-        ttl = 1
-
         print('Trying to reach ip {}.'.format(ip_dst))
 
-        while ttl <= self.hops:
+        for ttl in xrange(1, self.hops):
             ip, rtt = self.nodo_a_distancia(ttl)
-            ttl += 1
 
-            print('{} ({}): {}'.format(socket.gethostbyaddr(ip), ip, rtt))
+            if ip != '*':
+                print('{} {} {} {:.3f}'.format(ttl, socket.gethostbyaddr(ip)[0], ip, rtt))
+            else:
+                print('{} * * *', ttl)
+
             if ip == ip_dst:
-                print "Host reached."
+                print('Host reached in {} hops'.format(ttl))
                 break
         else:
-            print "Host not reached in {} hops".format(self.hops)
+            print('Host not reached in {} hops'.format(self.hops))
 
