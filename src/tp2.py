@@ -2,10 +2,10 @@ from numpy import *
 from traceroute import RouteTracer
 
 hosts = [
+    ('Moscow State University - Rusia', 'www.msu.ru', 'MSU'),
     ('Tsinghua University - China', 'www.tsinghua.edu.cn', 'Tsinghua'),
     ('University of Oxford - Reino Unido', 'www.ox.ac.uk', 'Oxford'),
     ('The University of Queensland - Australia', 'uq.edu.au', 'Queensland'),
-    ('Massachussets Instutite of Technology - Estados Unidos', 'web.mit.edu', 'MIT'),
 ]
 
 for university, host, shortname in hosts:
@@ -13,7 +13,7 @@ for university, host, shortname in hosts:
     distance, nodes = RouteTracer(host, name=university).trace_route(verbose=True)
 
     # No estoy contando el primer hop al router porque afea a todos los resultados.
-    nodes = nodes[1:]
+    nodes = [x for x in nodes if 'cab.prima.net.ar' not in x['host']][1:]
 
     # Estoy asumiendo que quiero hacer todos los calculos, incluyendo el promedio y
     # desvio estandar, sobre las diferencias. Esta bien esto?
@@ -30,6 +30,6 @@ for university, host, shortname in hosts:
     print('\tzscore\t=')
     for n, z in enumerate(zscore):
         print ('\t\t{:.3f}\t{} ({})'.format(z, nodes[n]['host'], nodes[n]['ip']))
-        f.write('{} {} {}\n'.format(z, rtt[n], nodes[n]['host']))
+        f.write('{:.3f} {:.3f} {}\n'.format(z, rtt[n], nodes[n]['host']))
 
     f.close()
