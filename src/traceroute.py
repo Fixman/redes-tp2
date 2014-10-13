@@ -5,8 +5,7 @@ ICMP_ECHO_REPLY = 0
 ICMP_TIME_EXCEEDED = 11
 
 class RouteTracer:
-
-    def __init__(self, dst, tries=5, hops=40, name=None):
+    def __init__(self, dst, tries=10, hops=40, name=None):
         self.dst    = dst
         self.tries  = tries
         self.hops   = hops
