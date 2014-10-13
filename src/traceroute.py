@@ -35,7 +35,7 @@ class RouteTracer:
         times = {}
 
         for i in xrange(self.tries):
-            ans, unans = scp.sr(pkt, verbose=0, timeout=3)
+            ans, unans = scp.sr(pkt, verbose=0, timeout=1)
 
             if ans:
                 rx = ans[0][1]
