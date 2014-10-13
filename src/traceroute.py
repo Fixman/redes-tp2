@@ -1,11 +1,12 @@
 import scapy.all as scp
 import socket
 from collections import Counter
-ICMP_TTL_EXC = 11
+ICMP_ECHO_REPLY = 0
+ICMP_TIME_EXCEEDED = 11
 
 class RouteTracer:
 
-    def __init__(self, dst, times=5, hops=30):
+    def __init__(self, dst, times=3, hops=30):
         self.dst    = dst
         self.times  = times
         self.hops   = hops
@@ -27,24 +28,16 @@ class RouteTracer:
         dst_ip = pkt.dst
 
         for i in xrange(self.times):
-            ans, unans = scp.sr(pkt, verbose=0, timeout=30)
+            ans, unans = scp.sr(pkt, verbose=0, timeout=5)
 
             if ans:
                 rx = ans[0][1]
                 tx = ans[0][0]
 
-                if rx.type == ICMP_TTL_EXC:
-                    apariciones[rx.src] += 1.0
-                    tiempo[rx.src] += (rx.time - tx.sent_time)
-                    break
+                if rx.type == ICMP_TIME_EXCEEDED or rx.type == ICMP_ECHO_REPLY:
+                    return (rx.src, (rx.time - tx.sent_time) * 1000)
 
-        if len(apariciones) >= 1:
-            ip, veces_ip = apariciones.most_common(1)[0]
-            tiempo = (tiempo[ip] / veces_ip) * 1000 # Tiempo en milisegundos
-        else:
-            ip, tiempo = ('*', 0)
-
-        return (ip, tiempo)
+        return ('*', 0)
 
     def trace_route(self):
         ip_dst = self.ip_a_alcanzar()
@@ -54,9 +47,14 @@ class RouteTracer:
             ip, rtt = self.nodo_a_distancia(ttl)
 
             if ip != '*':
-                print('{} {} {} {:.3f}'.format(ttl, socket.gethostbyaddr(ip)[0], ip, rtt))
+                try:
+                    host = socket.gethostbyaddr(ip)[0]
+                except socket.herror:
+                    host = ip
+
+                print('{} {} {} {:.3f}'.format(ttl, host, ip, rtt))
             else:
-                print('{} * * *', ttl)
+                print('{} * * *'.format(ttl))
 
             if ip == ip_dst:
                 print('Host reached in {} hops'.format(ttl))
