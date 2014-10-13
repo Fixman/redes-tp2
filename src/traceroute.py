@@ -4,6 +4,13 @@ from collections import Counter
 ICMP_ECHO_REPLY = 0
 ICMP_TIME_EXCEEDED = 11
 
+def median(num):
+    num.sort()
+    if len(num) % 2 != 0:
+        return num[len(num) / 2]
+
+    return (num[len(num) / 2] + num[len(num) / 2 - 1]) / 2.
+
 class RouteTracer:
     def __init__(self, dst, tries=10, hops=40, name=None):
         self.dst    = dst
@@ -25,10 +32,10 @@ class RouteTracer:
         dst_ip = pkt.dst
 
         hosts = Counter()
-        times = Counter()
+        times = {}
 
         for i in xrange(self.tries):
-            ans, unans = scp.sr(pkt, verbose=0, timeout=1)
+            ans, unans = scp.sr(pkt, verbose=0, timeout=3)
 
             if ans:
                 rx = ans[0][1]
@@ -36,11 +43,14 @@ class RouteTracer:
 
                 if rx.type == ICMP_TIME_EXCEEDED or rx.type == ICMP_ECHO_REPLY:
                     hosts[rx.src] += 1
-                    times[rx.src] += (rx.time - tx.sent_time) * 1000
+
+                    if rx.src not in times:
+                        times[rx.src] = []
+                    times[rx.src] += [(rx.time - tx.sent_time) * 1000]
 
         if hosts:
             best = hosts.most_common(1)[0][0]
-            return (best, times[best] / hosts[best])
+            return (best, median(times[best]))
 
         return ('*', 0)
 
