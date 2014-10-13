@@ -6,7 +6,7 @@ ICMP_TIME_EXCEEDED = 11
 
 class RouteTracer:
 
-    def __init__(self, dst, tries=3, hops=30, name=None):
+    def __init__(self, dst, tries=3, hops=40, name=None):
         self.dst    = dst
         self.tries  = tries
         self.hops   = hops
@@ -19,11 +19,14 @@ class RouteTracer:
         return ans[0][0].dst
 
     def nodo_a_distancia(self, ttl):
-        #Devuelve la tupla (ip, rtt prom) del nodo a distancia ttl
+        # Devuelve la tupla (ip, rtt prom) del nodo a distancia ttl
     
         dst = self.dst
         pkt = scp.IP(dst=dst, ttl=ttl) / scp.ICMP()  
         dst_ip = pkt.dst
+
+        hosts = Counter()
+        times = Counter()
 
         for i in xrange(self.tries):
             ans, unans = scp.sr(pkt, verbose=0, timeout=1)
@@ -33,7 +36,12 @@ class RouteTracer:
                 tx = ans[0][0]
 
                 if rx.type == ICMP_TIME_EXCEEDED or rx.type == ICMP_ECHO_REPLY:
-                    return (rx.src, (rx.time - tx.sent_time) * 1000)
+                    hosts[rx.src] += 1
+                    times[rx.src] += (rx.time - tx.sent_time) * 1000
+
+        if hosts:
+            best = hosts.most_common(1)[0][0]
+            return (best, times[best] / hosts[best])
 
         return ('*', 0)
 
@@ -59,7 +67,7 @@ class RouteTracer:
                     except socket.herror:
                         host = ip
 
-                    print('{} {} {} {:.3f}'.format(ttl, host, ip, rtt))
+                    print('{} {} {} {:.3f} ms'.format(ttl, host, ip, rtt))
                 else:
                     print('{} * * *'.format(ttl))
 
