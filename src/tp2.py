@@ -1,26 +1,12 @@
-#!/usr/bin/python
-
 from traceroute import RouteTracer
 
+hosts = [
+    ('Universidade Estadual de Campinas', 'www.unicamp.br'),
+    ('Universita degli study di Milano - Italia', 'www.unimi.it'),
+    ('The University of Queensland - Australia', 'uq.edu.au'),
+    ('Massachussets Instutite of Technology - EEUU', 'web.mit.edu'),
+]
 
-def main():
-
-    #Universit\`a degli studi di milano - Italia
-    tr = RouteTracer('www.unimi.it')
-    tr.trace_route()
-
-    #The University of Queensland - Australia
-    tr = RouteTracer('uq.edu.au')
-    tr.trace_route()
-
-    #MIT - EEUU
-    tr = RouteTracer('web.mit.edu')
-    tr.trace_route()
-
-    #Keio University - Japon
-    tr = RouteTracer('www.keio.ac.jp')
-    tr.trace_route()
-
-    
-if __name__=="__main__":
-    main()
+for university, host in hosts:
+    print('Traceroute to {} ({}):'.format(university, host))
+    RouteTracer(host).trace_route()
