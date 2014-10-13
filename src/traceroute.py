@@ -6,7 +6,7 @@ ICMP_TIME_EXCEEDED = 11
 
 class RouteTracer:
 
-    def __init__(self, dst, tries=3, hops=40, name=None):
+    def __init__(self, dst, tries=5, hops=40, name=None):
         self.dst    = dst
         self.tries  = tries
         self.hops   = hops
@@ -49,7 +49,7 @@ class RouteTracer:
         ip_dst = self.ip_a_alcanzar()
 
         distance = -1
-        times = []
+        nodes = []
         
         if verbose:
             print('Traceroute to {} ({}) with IP {}'.format(self.dst, self.name, ip_dst))
@@ -58,15 +58,16 @@ class RouteTracer:
             ip, rtt = self.nodo_a_distancia(ttl)
 
             if ip != '*':
-                times += [rtt]
+                try:
+                    host = socket.gethostbyaddr(ip)[0]
+                except socket.herror:
+                    host = ip
+
+            if ip != '*':
+                nodes += [{'ip': ip, 'host': host, 'rtt': rtt}]
 
             if verbose:
                 if ip != '*':
-                    try:
-                        host = socket.gethostbyaddr(ip)[0]
-                    except socket.herror:
-                        host = ip
-
                     print('{} {} {} {:.3f} ms'.format(ttl, host, ip, rtt))
                 else:
                     print('{} * * *'.format(ttl))
@@ -81,4 +82,4 @@ class RouteTracer:
             else:
                 print('Host not reached in {} hops'.format(self.hops))
 
-        return (distance, times)
+        return (distance, nodes)
