@@ -1,17 +1,23 @@
--0.222 0.000 197-166-89-200.fibertel.com.ar
--0.017 14.468 222-165-89-200.fibertel.com.ar
--0.392 -11.943 ge-1-2-0.ar3.eze1.gblx.net
-2.757 209.428 po2.ar3.MIA2.gblx.net
--1.004 -54.933 ae5.edge2.miami2.level3.net
-1.930 151.283 ae-4-4.car1.Manchesteruk1.Level3.net
--0.189 2.360 195.50.119.98
--0.745 -36.756 ae29.erdiss-sbr1.ja.net
--0.460 -16.714 ae31.londpg-sbr1.ja.net
--0.140 5.807 ae21.read-rbr3.ja.net
-0.437 46.364 ae1.read-rbr2.ja.net
--1.063 -59.055 ae2.oxfo-rbr2.ja.net
-0.543 53.821 Oxford-University-2.ja.net
--0.701 -33.673 cengb.backbone.ox.ac.uk
--0.483 -18.303 boucs.backbone.ox.ac.uk
-0.671 62.828 boucs-lompi1.sdc.ox.ac.uk
--0.922 -49.208 aurochs-web-154.nsms.ox.ac.uk
+*	(*)	0	*
+TGBRR01-Be5.mrse.com.ar	(200.51.240.173)	32.874	0.257
+GRTBUEBA1-AE5.red.telefonica-wholesale.net	(213.140.39.116)	30.348	-0.210
+Xe9-0-0-0-grtmiabr3.red.telefonica-wholesale.net	(94.142.117.2)	172.614	1.698
+Xe5-0-1-0-grtmiana2.red.telefonica-wholesale.net	(94.142.122.249)	167.885	-0.239
+TE-0-2-0-2-GRTMIANA4.red.telefonica-wholesale.net	(84.16.12.158)	173.499	-0.102
+ix-11-2-0-0.tcore1.MLN-Miami.as6453.net	(63.243.152.49)	444.635	3.395
+if-7-2.tcore1.AEQ-Ashburn.as6453.net	(66.198.154.177)	272.888	-2.439
+if-2-2.tcore2.AEQ-Ashburn.as6453.net	(216.6.87.1)	273.891	-0.163
+if-11-2.tcore2.NJY-Newark.as6453.net	(216.6.87.138)	272.610	-0.193
+if-2-2.tcore1.NJY-Newark.as6453.net	(66.198.70.1)	272.885	-0.173
+*	(*)	0	*
+if-5-2.thar1.LRT-London.as6453.net	(80.231.130.42)	269.587	-0.220
+195.219.100.82	(195.219.100.82)	278.619	-0.057
+ae29.londpg-sbr1.ja.net	(146.97.33.2)	273.738	-0.241
+ae21.read-rbr3.ja.net	(146.97.37.206)	271.328	-0.208
+ae1.read-rbr2.ja.net	(193.63.108.129)	273.322	-0.150
+ae2.oxfo-rbr2.ja.net	(193.63.108.134)	275.823	-0.143
+Oxford-University-2.ja.net	(193.63.109.114)	275.578	-0.180
+cengb.backbone.ox.ac.uk	(192.76.21.11)	274.132	-0.195
+boucs.backbone.ox.ac.uk	(192.76.22.200)	281.534	-0.079
+boucs-lompi1.sdc.ox.ac.uk	(192.76.32.62)	271.573	-0.308
+aurochs-web-155.nsms.ox.ac.uk	(129.67.242.155)	281.026	-0.052

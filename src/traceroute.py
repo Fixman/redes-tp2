@@ -12,7 +12,7 @@ def median(num):
     return (num[len(num) / 2] + num[len(num) / 2 - 1]) / 2.
 
 class RouteTracer:
-    def __init__(self, dst, tries=10, hops=40, name=None):
+    def __init__(self, dst, tries=10, hops=30, name=None):
         self.dst    = dst
         self.tries  = tries
         self.hops   = hops
@@ -43,11 +43,11 @@ class RouteTracer:
 
                 if rx.type == ICMP_TIME_EXCEEDED or rx.type == ICMP_ECHO_REPLY:
                     hosts[rx.src] += 1
-
+                    
                     if rx.src not in times:
                         times[rx.src] = []
                     times[rx.src] += [(rx.time - tx.sent_time) * 1000]
-
+                    
         if hosts:
             best = hosts.most_common(1)[0][0]
             return (best, median(times[best]))
@@ -65,6 +65,7 @@ class RouteTracer:
 
         for ttl in xrange(1, self.hops + 1):
             ip, rtt = self.nodo_a_distancia(ttl)
+            host = '*'
 
             if ip != '*':
                 try:
@@ -72,14 +73,10 @@ class RouteTracer:
                 except socket.herror:
                     host = ip
 
-            if ip != '*':
-                nodes += [{'ip': ip, 'host': host, 'rtt': rtt}]
+            nodes += [{'ip': ip, 'host': host, 'rtt': rtt}]
 
             if verbose:
-                if ip != '*':
-                    print('{} {} {} {:.3f} ms'.format(ttl, host, ip, rtt))
-                else:
-                    print('{} * * *'.format(ttl))
+                print('{} {} ({}) {:.3f} ms'.format(ttl, host, ip, rtt))
 
             if ip == ip_dst:
                 distance = ttl

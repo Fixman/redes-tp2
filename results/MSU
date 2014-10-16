@@ -1,13 +1,22 @@
--0.441 0.000 197-166-89-200.fibertel.com.ar
--0.708 -14.939 222-165-89-200.fibertel.com.ar
--0.453 -0.690 ge-0-1-2.ar3.eze1.gblx.net
-3.028 193.877 po2.ar3.MIA2.gblx.net
--0.008 24.197 ae5.edge2.miami2.level3.net
-1.340 99.534 ae-83-83.ebr3.Frankfurt1.Level3.net
--0.389 2.906 ae-114-3504.bar1.Stockholm1.Level3.net
--0.388 2.957 STATE-INSTI.bar1.Stockholm1.Level3.net
--0.504 -3.515 m9-3-gw.msk.runnet.ru
--0.276 9.219 msu.msk.runnet.ru
--0.512 -3.994 93.180.0.172
--0.320 6.748 188.44.33.1
--0.370 3.973 188.44.50.103
+*	(*)	0	*
+TGCUY01-Be5.mrse.com.ar	(200.51.240.181)	31.018	0.220
+ET6-0-0-0-GRTBUECU1.red.telefonica-wholesale.net	(94.142.103.153)	30.104	-0.265
+Te0-3-0-4-grtmiabr5.red.telefonica-wholesale.net	(94.142.123.22)	164.933	1.795
+Xe2-1-7-0-grtdaleq4.red.telefonica-wholesale.net	(94.142.127.105)	199.813	0.278
+te0-3-0-11.ccr21.dfw03.atlas.cogentco.com	(154.54.13.225)	221.383	0.077
+be2031.ccr21.dfw01.atlas.cogentco.com	(154.54.7.45)	212.266	-0.389
+be2012.ccr21.mci01.atlas.cogentco.com	(154.54.2.113)	214.954	-0.210
+be2156.ccr41.ord01.atlas.cogentco.com	(154.54.6.86)	215.663	-0.240
+be2079.ccr21.yyz02.atlas.cogentco.com	(154.54.27.182)	228.466	-0.056
+be2090.ccr21.ymq02.atlas.cogentco.com	(154.54.30.206)	226.107	-0.286
+be2384.ccr21.lpl01.atlas.cogentco.com	(154.54.44.138)	294.383	0.785
+be2182.ccr41.ams03.atlas.cogentco.com	(154.54.77.245)	307.648	-0.049
+be2186.ccr41.ham01.atlas.cogentco.com	(154.54.74.122)	264.320	-0.908
+be2281.ccr21.sto03.atlas.cogentco.com	(154.54.63.2)	327.827	0.713
+be2289.rcr21.hel01.atlas.cogentco.com	(154.54.62.250)	332.424	-0.181
+149.6.58.42	(149.6.58.42)	333.589	-0.233
+m9-3-gw.msk.runnet.ru	(194.85.40.229)	525.315	2.658
+msu.msk.runnet.ru	(194.190.254.118)	357.420	-2.798
+93.180.0.172	(93.180.0.172)	344.003	-0.454
+188.44.33.1	(188.44.33.1)	346.421	-0.214
+188.44.50.103	(188.44.50.103)	347.007	-0.242

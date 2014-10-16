@@ -1,5 +1,6 @@
-from numpy import *
+import numpy
 from traceroute import RouteTracer
+
 
 hosts = [
     ('Moscow State University - Rusia', 'www.msu.ru', 'MSU'),
@@ -12,24 +13,33 @@ for university, host, shortname in hosts:
     f = open('../results/{}'.format(shortname), mode='w')
     distance, nodes = RouteTracer(host, name=university).trace_route(verbose=True)
 
-    # No estoy contando el primer hop al router porque afea a todos los resultados.
-    nodes = [x for x in nodes if 'cab.prima.net.ar' not in x['host']][1:]
+    # No estoy contando el primer hop al router.
+    nodes = nodes[1:]
 
-    # Estoy asumiendo que quiero hacer todos los calculos, incluyendo el promedio y
-    # desvio estandar, sobre las diferencias. Esta bien esto?
-    rtt = [0] + diff([x['rtt'] for x in nodes]).tolist()
+    # Calculo la diferencia entre todos los que contestaron
+    contestaron = [x['rtt'] for x in nodes if x['ip'] != '*']
+    rtt = [contestaron[0]] + numpy.diff(contestaron).tolist()
 
-    N = len(rtt)
-    mean = sum(rtt) / N
-    stddev = sqrt(sum([(x - mean) ** 2 for x in rtt]) / N)
+    mean = numpy.mean(rtt)
+    stddev = numpy.std(rtt)
     zscore = [(x - mean) / stddev for x in rtt]
 
     print('{} {}:'.format(university, host))
     print('\tmean\t= {}'.format(mean))
     print('\tstddev\t= {}'.format(stddev))
     print('\tzscore\t=')
-    for n, z in enumerate(zscore):
-        print ('\t\t{:.3f}\t{} ({})'.format(z, nodes[n]['host'], nodes[n]['ip']))
-        f.write('{:.3f} {:.3f} {}\n'.format(z, rtt[n], nodes[n]['host']))
+
+    i=0
+    for n in nodes:
+
+        if n['ip'] != '*':
+            zs, host, ip, rtt = zscore[i], n['host'], n['ip'], n['rtt']
+            i += 1
+
+            print   '\t\t{}\t({})\t{:.3f}\t{:.3f}'.format(host, ip, rtt, zs)
+            f.write('{}\t({})\t{:.3f}\t{:.3f}\n'.format(host, ip, rtt, zs))
+        else:
+            print ('\t\t*\t(*)\t0\t*')
+            f.write('*\t(*)\t0\t*\n')
 
     f.close()

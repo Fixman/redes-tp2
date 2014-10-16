@@ -1,21 +1,17 @@
--0.411 0.000 13-164-89-200.fibertel.com.ar
--0.373 1.886 250-165-89-200.fibertel.com.ar
--0.717 -15.064 ge-1-2-0.ar3.eze1.gblx.net
-3.737 204.432 po2-30G.ar2.MIA2.gblx.net
--0.188 11.022 xe-0-0-0-10.r05.miamfl02.us.bb.gin.ntt.net
--0.242 8.346 ae-4.r21.miamfl02.us.bb.gin.ntt.net
--0.266 7.156 ae-7.r20.dllstx09.us.bb.gin.ntt.net
--0.500 -4.345 ae-5.r20.lsanca03.us.bb.gin.ntt.net
--0.895 -23.836 ae-1.r05.lsanca03.us.bb.gin.ntt.net
-0.163 28.285 xe-0-0-0-16.r05.lsanca03.us.ce.gin.ntt.net
-1.530 95.704 xe-0-0-3.pe1.tkpa.akl.aarnet.net.au
--0.390 1.057 et-0-1-0.200.pe1.wnpa.akl.aarnet.net.au
-0.690 54.259 xe-1-2-1.pe1.msct.nsw.aarnet.net.au
-0.289 34.496 ae9.bb1.b.syd.aarnet.net.au
--1.191 -38.433 so-0-1-0.bb1.a.bne.aarnet.net.au
-0.102 25.297 tengigabitethernet2-1.er2.uq.cpe.aarnet.net.au
--0.012 19.660 gw2.er2.uq.cpe.aarnet.net.au
--0.200 10.398 uq-se1-uq-gw1.router.uq.edu.au
--0.492 -3.994 zeus-uqse1.router.uq.edu.au
--0.385 1.276 a82-28.nat.uq.edu.au
--0.246 8.173 wsa-www.soe.uq.edu.au
+*	(*)	0	*
+TGCUY01-Be1.mrse.com.ar	(200.51.240.156)	31.896	0.110
+et-7-0-0-0-grtbuecu1.red.telefonica-wholesale.net	(84.16.9.233)	30.748	-0.399
+Xe9-0-6-0-grtmiabr3.red.telefonica-wholesale.net	(94.142.123.14)	165.811	1.700
+213.140.49.13	(213.140.49.13)	230.069	0.609
+xe-3-1-1.mpr1.pao1.us.above.net	(64.125.13.113)	229.511	-0.390
+208.185.52.74.available.above.net	(208.185.52.74)	392.486	2.131
+xe-1-2-1.pe2.brwy.nsw.aarnet.net.au	(202.158.194.176)	391.129	-0.403
+ae9.bb1.a.syd.aarnet.net.au	(113.197.15.57)	514.913	1.527
+so-0-1-0.bb1.b.bne.aarnet.net.au	(202.158.194.54)	407.555	-2.037
+ge-0-0-0.bb1.a.bne.aarnet.net.au	(202.158.194.213)	394.376	-0.585
+tengigabitethernet2-1.er2.uq.cpe.aarnet.net.au	(202.158.209.3)	394.951	-0.373
+gw2.er2.uq.cpe.aarnet.net.au	(113.197.8.34)	391.479	-0.435
+uq-se1-uq-gw1.router.uq.edu.au	(130.102.159.1)	392.041	-0.373
+zeus-uqse1.router.uq.edu.au	(130.102.0.242)	401.994	-0.228
+a82-28.nat.uq.edu.au	(130.102.82.28)	403.280	-0.362
+wsa-www.soe.uq.edu.au	(130.102.131.70)	396.128	-0.492
