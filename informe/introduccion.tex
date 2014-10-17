@@ -3,7 +3,12 @@ Traceroute como herramienta para hacer un an\'alisis estad\'istico de tiempos
 de RTT en la comunicaci\'on con algunos hosts ubicados en distintos lugares
 geográficos (universidades en distintos pa\'ises).
 
-Más especificamente, promediamos distintos RTTs para cada salto que se da en 
-la ruta que nos comunica con cada host, y normalizamos dicho promedio para 
-conseguir un ZRTT para cada salto que nos de suficiente informaci\'on como para
+El fin de este análisis, además de presentar un desafio implementativo y analítico, sería determinar haciendo uso de esta herramienta enlaces submarinos donde el RTT de los mismos se destaque por encima de los demas debido a las largas distancias.
+
+Más especificamente, \textcolor{red}{estimamos un RTT promedio} para cada salto que se da en 
+la ruta que nos comunica con cada host, y \textcolor{red}{normalizamos este valor para 
+conseguir un ZRTT} para cada salto que nos de suficiente informaci\'on como para
 \textcolor{red}{analizar el trasfondo del tr\'afico en la red}.
+
+
+
