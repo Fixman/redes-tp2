@@ -18,7 +18,7 @@ options = {
 
     'style': 'feature:all|element:labels|visibility:off',
 
-    # For the record, I think this is a horrible, horrible hack. Sorry!
+    # For the record, I know this is a horrible, horrible hack. Sorry!
     'markers': '&markers='.join('size:mid|label:{}|color:{}|{}'.format(x[0][0], 'red' if x[2] == '1' else 'blue', x[0]) for x in cities),
     'path': '&path='.join('weight:1|color:{}|{}|{}'.format('red' if cities[i][1] == '1' else 'blue', cities[i - 1][0], cities[i][0]) for i in range(1, len(cities)))
 }
