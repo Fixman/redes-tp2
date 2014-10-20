@@ -9,14 +9,18 @@ from urllib.request import urlopen
 
 output = open(sys.argv[1], 'wb')
 
-cities = [hop.strip('\n') for hop in sys.stdin]
+cities = [hop.strip().split() for hop in sys.stdin]
 
 options = {
     'size': '1280x1280',
+    'scale': '2',
     'zoom': '2',
 
-    'markers': 'size:small|' + '|'.join(cities),
-    'path': 'weight:1|' + '|'.join(cities),
+    'style': 'feature:all|element:labels|visibility:off',
+
+    # For the record, I think this is a horrible, horrible hack. Sorry!
+    'markers': '&markers='.join('size:mid|label:{}|color:{}|{}'.format(x[0][0], 'red' if x[2] == '1' else 'blue', x[0]) for x in cities),
+    'path': '&path='.join('weight:1|color:{}|{}|{}'.format('red' if cities[i][1] == '1' else 'blue', cities[i - 1][0], cities[i][0]) for i in range(1, len(cities)))
 }
 
 options_string = '&'.join('{}={}'.format(arg, options[arg]) for arg in options)
