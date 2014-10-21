@@ -60,7 +60,7 @@ descripto a continuaci\'on.
 
 Un paquete no llega al mismo destino atravesando siempre las mismas rutas. Los nodos intermedios pueden
 caerse o levantarse. Determinados enlaces pueden congestionarse o liberarse en distintos momentos.
-Supongamos que el algoritmo env\'ia hacia el destino un paquete con TTL 10. ¿Qu\'e garant\'ias tenemos de que,
+Supongamos que el algoritmo env\'ia hacia el destino un paquete con TTL 10. ?`Qu\'e garant\'ias tenemos de que,
 en caso de ser necesario un segundo intento porque no ha llegado ning\'un mensaje de error, el router
 alcanzado luego del d\'ecimo hop sea el mismo? Ninguna. En otras palabras, dependiendo la ruta que siga
 el datagrama, el router alcanzado luego del d\'ecimo hop ser\'a uno u otro.
@@ -71,10 +71,13 @@ Luego, el algoritmo selecciona aquella direcci\'on que ha respondido m\'as veces
 Finalmente, el valor de RTT entre el host que corre el \emph{traceroute} y el router a $i$ hops de
 distancia es calculado como el promedio de los valores obtenidos por cada intento.
 
-\subsection{Zscore}
+\subsection{Estimando Enlaces Trasatl\'anticos}
+Suponemos que el tiempo que le toma a un paquete ir de un nodo a otro 
+por tierra es significativamente menor al que le toma atravesar un 
+enlace trasatl\'antico. Por ello, calculamos la distancia en tiempo
+que hay entre los pares de nodos vecinos y luego, asumiendo que los
+mismos siguen una distribuci\'on normal, calculamos el estad\'istico
+Zscore para cada uno de ellos. 
 
-M\'as especificamente, \textcolor{red}{estimamos un RTT promedio} para cada salto que se da en
-la ruta que nos comunica con cada host, y \textcolor{red}{normalizamos este valor para
-conseguir un ZRTT} para cada salto que nos de suficiente informaci\'on como para
-\textcolor{red}{analizar el trasfondo del tr\'afico en la red}.
-
+Finalmente fijaremos un umbral de Zscore para determinar qu\'e tramos
+son submarinos. 

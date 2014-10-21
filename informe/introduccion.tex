@@ -6,23 +6,16 @@ que se apoyan sobre este m\'odulo para obtener informaci\'on acerca del estado d
 debe atravesar un paquete para llegar al destino, como por ejemplo, el valor del RTT (round-trip-time)
 entre 2 hosts. Entre estas herramientas se destacan los comandos \emph{ping} y \emph{traceroute}.
 
-El objetivo de este trab\'ajo pr\'actico consiste en realizar nuestro propio
-\emph{traceroute} basado en Scapy y realizar distintos experimentos con \'el.
-Esta herramienta es utilizada principalmente para hacer un an\'alisis estad\'istico de tiempos
-de RTT en la comunicaci\'on entre hosts. Con esto buscamos comprender el funcionamiento del protocolo
-ICMP: \emph{Internet control message protocol}, que act\'ua sobre la capa de red.
+El objetivo de este trab\'ajo pr\'actico es realizar nuestra propia
+implementaci\'on de \emph{traceroute} y utilizar la misma para comprender el
+funcionamiento de las comuniaciones a larga distancia sobre internet.
+Para esto \'ultimo realizaremos un an\'alisis de la distribuci\'on 
+geogr\'afica del conjunto de enlaces y routers atravesados por los paquetes
+ICMP.
+A su vez intentaremos detectar cuando dichos paquetes atraviesan enlaces
+trasatl\'anticos utilizando solamente los valores de los RTT.
 
-Adem\'as de presentar un desaf\'io implementativo que genera aportes a nivel te\'orico, nos interesa
-observar el protocolo funcionando en un contexto real. Por lo tanto uno de los aspectos
-m\'as relevantes en el tp es el an\'alisis de la topolog\'ia y distribuci\'on geogr\'afica del conjunto de enlaces
-y routers atravesados por los paquetes ICMP enviados entre los distintos hosts. En suma a lo
-anteriormente mencionado queremos determinar la presencia o ausencia de enlaces submarinos en
-la ruta de los paquetes, donde el RTT de los mismos se destaque por encima de los
-dem\'as debido a las largas distancias.
-
-Por todos estos motivos, los hosts destino de los paquetes fueron seleccionados entre un conjunto de universidades ubicadas en distintos pa\'ises y continentes. De esta manera generamos casos de
-prueba en donde los paquetes tengan que atravesar gran cantidad de tramos,
-aumentando las probabilidades de que transiten por enlaces de diversos tipos, incluyendo submarinos.
+Por todos estos motivos, los hosts destino de los paquetes fueron seleccionados entre un conjunto de universidades ubicadas en distintos pa\'ises y continentes. 
 
 
 \subsection{Tipos de mensajes ICMP}
