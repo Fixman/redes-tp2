@@ -1,14 +1,9 @@
-Establecimos como objetivo determinar enlaces submarinos en base al tiempo ZRTT de respuesta
-Para ellos, como vimos, enviamos paquetes de control a universidades de otros continentes.
+Luego de correr todos los experimentos notamos que la direcci\'on ip de los nodos
+no necesariamente refleja su posici\'on geogr\'afica real.
 
-En esta secci\'on mostraremos los resultados obtenidos en la comunicaci\'on con 
-Asia (MSU y Tsinghua), Europa (Oxford) y Ocean\'ia (Queensland), mostrando la ubicaci\'on en 
-el mapa de los nodos m\'as importantes por los que se transmiten los paquetes y donde 
-pueden verse los saltos intercontinentales que uno espera encontrar.
-
-Luego mostraremos gr\'aficos de barras de IP en funci\'on de zscore con los umbrales que 
-encontramos emp\'iricamente. Si el umbral es adecuado, \'unicamente los zscores de los 
-enlaces submarinos estar\'an por encima del mismo.
+TUVE QUE SALIR CORRIENDO AL TRABAJO, LO QUE HAY QUE DECIR ES QUE NO TIENE SENTIDO
+QUE UNA IP SEA 94.142.103.153 (ESPAÑA) PERO EL RTT SEA 30.104. SI HACEN EL 
+CALCULO, ESTO SEGURAMENTE VIOLA LA VELOCIDAD DE LA LUZ.
 
 Cabe aclarar que intentamos hacer uso de la herramienta www.geoiptool.com para orientarnos en 
 el curso de las rutas y la mayoria de las veces lo que encontrabamos es que no tenian sentido las 
@@ -20,37 +15,36 @@ nombres. Claro que no siempre encontramos hosts 'bien nombrados'.
 Un ejemplo podr\'ia ser \emph{be2384.ccr21.\textbf{lpl}01.atlas.cogentco.com} con el c\'odigo IATA de 
 Liverpool.
 
-\subsection{MSU}
+\subsection{Moscow State University (Rusia)}
 
-Veamos para Moscow State University (MSU), en Rusia:
-
-Los resultados para los distintos hops pueden verse resumidos en la siguiente tabla.
+\subsubsection{Ruta}
 
 ~
 
-\begin{tabular}{llll}
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media)}}	&	\textit{\textbf{ZScore}}	\\
-	Buenos Aires	&	200.51.240.181	&	31.018	&	0.220	\\
-	Buenos Aires (telef\'onica)	&	94.142.103.153	&	30.104	&	-0.265	\\
-	Miami (telef\'onica)		&	94.142.123.22	&	164.933	&	\textcolor{red}{1.795}	\\
-	Dallas (telef\'onica)		&	94.142.127.105	&	199.813	&	0.278	\\
-	Dallas/Ft Worth (cogentco)	&	154.54.13.225	&	221.383	&	0.077	\\
-	Dallas/Ft Worth (cogentco)	&	154.54.7.45	&	212.266	&	-0.389	\\
-	Kansas (cogentco)		&	154.54.2.113	&	214.954	&	-0.210	\\
-	Chicago (cogentco)		&	154.54.6.86	&	215.663	&	-0.240	\\
-	Toronto (cogentco)		&	154.54.27.182	&	228.466	&	-0.056	\\
-	Montreal (cogentco)	&	154.54.30.206	&	226.107	&	-0.286	\\
-	Liverpool (cogentco)	&	154.54.44.138	&	294.383	&	\textbf{0.785}	\\
-	Amsterdam (cogentco)	&	154.54.77.245	&	307.648	&	-0.049	\\
-	Hamburgo (cogentco)	&	154.54.74.122	&	264.320	&	-0.908	\\
-	Estocolmo (cogentco)	&	154.54.63.2	&	327.827	&	\textbf{0.713}	\\
-	Helsinki (cogentco)		&	154.54.62.250	&	332.424	&	-0.181	\\
-	Mosc\'u			&	149.6.58.42	&	333.589	&	-0.233	\\
-	Mosc\'u (runnet)		&	194.85.40.229	&	525.315	&	\textcolor{red}{2.658}	\\
-	Mosc\'u 			&	194.190.254.118	&	357.420	&	-2.798	\\
-	Mosc\'u (runnet)		&	93.180.0.172	&	344.003	&	-0.454	\\
-	Mosc\'u			&	188.44.33.1	&	346.421	&	-0.214 	\\
-	Mosc\'u			&	188.44.50.103	&	347.007	&	-0.242	\\
+\begin{tabular}{lllll}
+
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media)}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
+	Buenos Aires	&	200.51.240.181	&	31.018	&	0.220	&	Continental	\\
+	Buenos Aires (telef\'onica)	&	94.142.103.153	&	30.104	&	-0.265	&	Continental	\\
+	Miami (telef\'onica)		&	94.142.123.22	&	164.933	&	1.795	&	trasatl\'anticos	\\
+	Dallas (telef\'onica)		&	94.142.127.105	&	199.813	&	0.278	&	Continental	\\
+	Dallas/Ft Worth (cogentco)	&	154.54.13.225	&	221.383	&	0.077	&	Continental	\\
+	Dallas/Ft Worth (cogentco)	&	154.54.7.45	&	212.266	&	-0.389	&	Continental	\\
+	Kansas (cogentco)		&	154.54.2.113	&	214.954	&	-0.210	&	Continental	\\
+	Chicago (cogentco)		&	154.54.6.86	&	215.663	&	-0.240	&	Continental	\\
+	Toronto (cogentco)		&	154.54.27.182	&	228.466	&	-0.056	&	Continental	\\
+	Montreal (cogentco)	&	154.54.30.206	&	226.107	&	-0.286	&	Continental	\\
+	Liverpool (cogentco)	&	154.54.44.138	&	294.383	&	0.785	&	trasatl\'anticos	\\
+	Amsterdam (cogentco)	&	154.54.77.245	&	307.648	&	-0.049	&	Continental	\\
+	Hamburgo (cogentco)	&	154.54.74.122	&	264.320	&	-0.908	&	Continental	\\
+	Estocolmo (cogentco)	&	154.54.63.2	&	327.827	&	0.713	&	?	\\
+	Helsinki (cogentco)		&	154.54.62.250	&	332.424	&	-0.181	&	Continental	\\
+	Mosc\'u			&	149.6.58.42	&	333.589	&	-0.233	&	Continental	\\
+	Mosc\'u (runnet)		&	194.85.40.229	&	525.315	&	2.658	&	?	\\
+	Mosc\'u 			&	194.190.254.118	&	357.420	&	-2.798	&	Continental	\\
+	Mosc\'u (runnet)		&	93.180.0.172	&	344.003	&	-0.454	&	Continental	\\
+	Mosc\'u			&	188.44.33.1	&	346.421	&	-0.214	&	Continental	\\ 	
+	Mosc\'u			&	188.44.50.103	&	347.007	&	-0.242	&	Continental	\\	
 
 \end{tabular}
 
