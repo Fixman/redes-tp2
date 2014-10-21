@@ -1,26 +1,26 @@
 \subsection{Objetivos generales}
 
-ICMP es el módulo del protocolo TCP/IP que se encarga de proveer mensajes de error y de control cuando
-se produce alguna anormalidad en el envío de un datagrama IP. Existen distintas herramientas
-que se apoyan sobre este módulo para obtener información acerca del estado de las rutas que
+ICMP es el m\'odulo del protocolo TCP/IP que se encarga de proveer mensajes de error y de control cuando
+se produce alguna anormalidad en el env\'io de un datagrama IP. Existen distintas herramientas
+que se apoyan sobre este m\'odulo para obtener informaci\'on acerca del estado de las rutas que
 debe atravesar un paquete para llegar al destino, como por ejemplo, el valor del RTT (round-trip-time)
 entre 2 hosts. Entre estas herramientas se destacan los comandos \emph{ping} y \emph{traceroute}.
 
 El objetivo de este trab\'ajo pr\'actico consiste en realizar nuestro propio
-\emph{traceroute} basado en Scapy y realizar distintos experimentos con él.
+\emph{traceroute} basado en Scapy y realizar distintos experimentos con \'el.
 Esta herramienta es utilizada principalmente para hacer un an\'alisis estad\'istico de tiempos
 de RTT en la comunicaci\'on entre hosts. Con esto buscamos comprender el funcionamiento del protocolo
-ICMP: \emph{Internet control message protocol}, que actúa sobre la capa de red.
+ICMP: \emph{Internet control message protocol}, que act\'ua sobre la capa de red.
 
-Además de presentar un desafío implementativo que genera aportes a nivel teórico, nos interesa
+Adem\'as de presentar un desaf\'io implementativo que genera aportes a nivel te\'orico, nos interesa
 observar el protocolo funcionando en un contexto real. Por lo tanto uno de los aspectos
-más relevantes en el tp es el análisis de la topología y distribución geográfica del conjunto de enlaces
+m\'as relevantes en el tp es el an\'alisis de la topolog\'ia y distribuci\'on geogr\'afica del conjunto de enlaces
 y routers atravesados por los paquetes ICMP enviados entre los distintos hosts. En suma a lo
 anteriormente mencionado queremos determinar la presencia o ausencia de enlaces submarinos en
 la ruta de los paquetes, donde el RTT de los mismos se destaque por encima de los
-demás debido a las largas distancias.
+dem\'as debido a las largas distancias.
 
-Por todos estos motivos, los hosts destino de los paquetes fueron seleccionados entre un conjunto de universidades ubicadas en distintos países y continentes. De esta manera generamos casos de
+Por todos estos motivos, los hosts destino de los paquetes fueron seleccionados entre un conjunto de universidades ubicadas en distintos pa\'ises y continentes. De esta manera generamos casos de
 prueba en donde los paquetes tengan que atravesar gran cantidad de tramos,
 aumentando las probabilidades de que transiten por enlaces de diversos tipos, incluyendo submarinos.
 
@@ -28,15 +28,15 @@ aumentando las probabilidades de que transiten por enlaces de diversos tipos, in
 \subsection{Tipos de mensajes ICMP}
 
 Los mensajes de ICMP se transmiten en forma de datagramas. El emisor puede ser tanto un host como router,
-y el destino es siempre la dirección source del datagrama IP que motivó el mensaje.
+y el destino es siempre la direcci\'on source del datagrama IP que motiv\'o el mensaje.
 
-Entre los tipos de mensajes de error más comunes se destacan:
+Entre los tipos de mensajes de error m\'as comunes se destacan:
 \begin{itemize}
-  \item Echo reply: Respuesta a echo request. Los datos recibidos por el request deben ser incluídos
+  \item Echo reply: Respuesta a echo request. Los datos recibidos por el request deben ser inclu\'idos
   en el mensaje. type: 0
-  \item Destination host unreachable: El router no encuentra en su tabla una dirección a la cual
+  \item Destination host unreachable: El router no encuentra en su tabla una direcci\'on a la cual
   forwardear el paquete. type: 3
-  \item Redirect: El router que recibe el paquete detecta que otro router ofrece un camino más
+  \item Redirect: El router que recibe el paquete detecta que otro router ofrece un camino m\'as
   efectivo para forwardear el paquete. type: 5
   \item Echo request: Se espera que los datos enviados sean recibidos nuevamente en un mensaje echo
   reply. type: 8
@@ -49,15 +49,15 @@ Entre los tipos de mensajes de error más comunes se destacan:
 \subsection{Ping}
 
 El comando ping es una tool que permite testear la actividad de un host dentro del protocolo IP y medir
-el RTT entre el dispositivo que ha ejecutado el comando y el host de interés. El mismo se basa en
-la emisión de mensajes \emph{echo request}, y sus respectivas respuestas \emph{echo reply}. El RTT queda
+el RTT entre el dispositivo que ha ejecutado el comando y el host de inter\'es. El mismo se basa en
+la emisi\'on de mensajes \emph{echo request}, y sus respectivas respuestas \emph{echo reply}. El RTT queda
 determinado entonces por el tiempo que tarda el host emisor en recibir la respuesta.
 Los requests para los cuales no se recibe ninguna respuesta son registrados como paquetes perdidos.
 
 \subsection{Traceroute}
 
-A diferencia de ping, \emph{traceroute} provee información acerca de la ruta que siguen los datagramas
+A diferencia de ping, \emph{traceroute} provee informaci\'on acerca de la ruta que siguen los datagramas
 para arribar al destino. Esta herramienta arma un registro ordenado con los routers que ha atravesado
 el paquete, junto con el valor de los RTT entre cada par sucesivo de dichos routers. La suma de todos
-esos tiempos indica el RTT entre el nodo emisor y el destino. En la siguiente sección explicaremos el
+esos tiempos indica el RTT entre el nodo emisor y el destino. En la siguiente secci\'on explicaremos el
 mecanismo de esta herramienta con mucho mayor detalle.
