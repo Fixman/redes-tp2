@@ -23,6 +23,8 @@ prove\'ida por geoiptool. GRT\textbf{BUE}CU1 indicar\'ia que la IP realmente per
 Afortunadamente capturamos los nombres de los hosts en cada salto y la mayoria tiene indicios de ubicaci\'on en sus
 nombres. Claro que no siempre encontramos hosts 'bien nombrados'.
 
+~
+
 Otro ejemplo podr\'ia ser \emph{be2384.ccr21.\textbf{lpl}01.atlas.cogentco.com} con el c\'odigo IATA de 
 Liverpool.
 
@@ -52,7 +54,7 @@ Liverpool.
 	Helsinki (cogentco)		&	154.54.62.250	&	332.424	&	-0.181	&	Continental	\\
 	Mosc\'u				&	149.6.58.42	&	333.589	&	-0.233	&	Continental	\\
 	Mosc\'u (runnet)		&	194.85.40.229	&	525.315	&	2.658	&	Trasatl\'antico	\\
-	Mosc\'u 			&	194.190.254.118	&	357.420	&	-2.798	&	Continental	\\
+	Mosc\'u (runnet)		&	194.190.254.118	&	357.420	&	-2.798	&	Continental	\\
 	Mosc\'u (runnet)		&	93.180.0.172	&	344.003	&	-0.454	&	Continental	\\
 	Mosc\'u				&	188.44.33.1	&	346.421	&	-0.214	&	Continental	\\ 	
 	Mosc\'u				&	188.44.50.103	&	347.007	&	-0.242	&	Continental	\\	
@@ -61,7 +63,10 @@ Liverpool.
 
 ~
 
-Podemos ver que la ruta pasa de Am\'erica del Sur (BUE) a Am\'erica del Norte (MIA), luego de Canada en America del Norte (Montreal) a Europa (Liverpool) y por \'ultimo llega a Mosk\'u en Asia. En los dos primeros saltos, el ZScore es bastante alto, y por eso resalta en la tabla. 
+\textcolor{red}{Podemos ver que la ruta pasa de Am\'erica del Sur (BUE) a Am\'erica del Norte (MIA), luego de Canada en America del Norte (Montreal) a Europa (Liverpool) y por \'ultimo llega a Mosk\'u en Asia. En el primero de los saltos descriptos el ZScore es bastante alto, y por eso figura como trasatl\'antico en la tabla.
+Luego el segundo salto no es significativo para un umbral de 1.5, si lo ser\'a con uno de 0.5.
+Dentro de los saltos en Moscu obtenemos un ZScore de 2.66 aun no siendo un enlace submarino. Esto puede deberse al entrar en la Russian University Network.}
+\textcolor{blue}{ESTO AHORA HAY QUE VERLO BIEN, DEPENDE MUCHO DEL ANALISIS QUE HAGAMOS PARA EL UMBRAL, YA QUE EL TIPO SE CORRESPONDE CON ESO.}
 
 \begin{figure}[H]
 	\begin{center}
