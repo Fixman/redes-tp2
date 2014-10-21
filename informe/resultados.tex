@@ -1,13 +1,20 @@
 Luego de correr todos los experimentos notamos que la direcci\'on ip de los nodos
 no necesariamente refleja su posici\'on geogr\'afica real.
 
-TUVE QUE SALIR CORRIENDO AL TRABAJO, LO QUE HAY QUE DECIR ES QUE NO TIENE SENTIDO
-QUE UNA IP SEA 94.142.103.153 (ESPAÑA) PERO EL RTT SEA 30.104. SI HACEN EL 
-CALCULO, ESTO SEGURAMENTE VIOLA LA VELOCIDAD DE LA LUZ.
+Intentamos hacer uso de la herramienta www.geoiptool.com para orientarnos en 
+el curso de las rutas y algunas veces encontrabamos que no ten\'ian sentido las 
+ubicaciones que nos propon\'ia esta herramienta.
 
-Cabe aclarar que intentamos hacer uso de la herramienta www.geoiptool.com para orientarnos en 
-el curso de las rutas y la mayoria de las veces lo que encontrabamos es que no tenian sentido las 
-ubicaciones que nos proponia esta herramienta.
+Un ejemplo de esto mismo seria:
+
+~
+
+\begin{tabular}{lll}
+	\textit{\textbf{Host name}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	\\
+	ET6-0-0-0-GRTBUECU1.red.telefonica-wholesale.net	&	94.142.103.153	&	30.104	\\
+\end{tabular}
+
+~
 
 Afortunadamente capturamos los nombres de los hosts y la mayoria tiene indicios de ubicaci\'on en sus
 nombres. Claro que no siempre encontramos hosts 'bien nombrados'.
@@ -23,7 +30,7 @@ Liverpool.
 
 \begin{tabular}{lllll}
 
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media)}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
 	Buenos Aires	&	200.51.240.181	&	31.018	&	0.220	&	Continental	\\
 	Buenos Aires (telef\'onica)	&	94.142.103.153	&	30.104	&	-0.265	&	Continental	\\
 	Miami (telef\'onica)		&	94.142.123.22	&	164.933	&	1.795	&	trasatl\'anticos	\\
@@ -69,7 +76,7 @@ Veamos la siguiente tabla.
 ~
 
 \begin{tabular}{llll}
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media)}}	&	\textit{\textbf{ZScore}}	\\
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	\\
 	Buenos Aires	&	200.51.240.156	&	31.907	&	0.259	\\
 	Buenos Aires (telef\'onica)	&	84.16.9.233	&	30.095	&	-0.437	\\
 	Miami (telef\'onica)		&	94.142.121.222	&	165.469	&	\textcolor{red}{2.396}	\\
@@ -111,7 +118,7 @@ Veamos la siguiente tabla.
 ~
 
 \begin{tabular}{llll}
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media)}}	&	\textit{\textbf{ZScore}}	\\
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	\\
 	Buenos Aires			&	200.51.240.181	&	37.154	&	0.426	\\
 	Buenos Aires (telef\'onica)	&	84.16.9.233	&	51.008	&	-0.009	\\
 	Miami (telef\'onica)		&	5.53.5.138	&	210.915	&	2.722	\\
@@ -124,15 +131,15 @@ Veamos la siguiente tabla.
 	London (as6453)			&	66.198.70.26	&	403.133	&	1.523	\\
 	London (as6453)			&	80.231.130.42	&	298.757	&	-2.220	\\
 	195.219.100.82			&	195.219.100.82	&	285.687	-0.513	\\
-	ae29.londpg-sbr1.ja.net	146.97.33.2	&	289.063	&	-0.205	\\
-	ae21.read-rbr3.ja.net	146.97.37.206	&	291.484	&	-0.223	\\
-	ae1.read-rbr2.ja.net	193.63.108.129	&	281.783	&	-0.450	\\
-	ae2.oxfo-rbr2.ja.net	193.63.108.134	&	294.226	&	-0.036	\\
-	Oxford-University-2.ja.net	193.63.109.114	&	289.814	&	-0.351	\\
-	csurb.backbone.ox.ac.uk	192.76.21.21	&	280.879	&	-0.435	\\
-	bmusb.backbone.ox.ac.uk	192.76.22.201	&	282.251	&	-0.243	\\
-	bmus-lompi1.sdc.ox.ac.uk	192.76.32.66	&	286.466	&	-0.190	\\
-	aurochs-web-155.nsms.ox.ac.uk	129.67.242.155	&	301.388	&	0.011	\\
+	ae29.londpg-sbr1.ja.net	&	146.97.33.2	&	289.063	&	-0.205	\\
+	ae21.read-rbr3.ja.net	&	146.97.37.206	&	291.484	&	-0.223	\\
+	ae1.read-rbr2.ja.net	&	193.63.108.129	&	281.783	&	-0.450	\\
+	ae2.oxfo-rbr2.ja.net	&	193.63.108.134	&	294.226	&	-0.036	\\
+	Oxford-University-2.ja.net	&	193.63.109.114	&	289.814	&	-0.351	\\
+	csurb.backbone.ox.ac.uk	&	192.76.21.21	&	280.879	&	-0.435	\\
+	bmusb.backbone.ox.ac.uk	&	192.76.22.201	&	282.251	&	-0.243	\\
+	bmus-lompi1.sdc.ox.ac.uk	&	192.76.32.66	&	286.466	&	-0.190	\\
+	aurochs-web-155.nsms.ox.ac.uk	&	129.67.242.155	&	301.388	&	0.011	\\
 
 \end{tabular}
 
@@ -152,27 +159,23 @@ Veamos la siguiente tabla.
 ~
 
 \begin{tabular}{llll}
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media)}}	&	\textit{\textbf{ZScore}}	\\
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	\\
 	Buenos Aires	&	200.51.240.156	&	31.896	&		0.110	\\
-	et-7-0-0-0-grtbuecu1.red.telefonica-wholesale.net	(84.16.9.233	&	30.748	&	-0.399	\\
-	\\	Xe9-0-6-0-grtmiabr3.red.telefonica-wholesale.net	(94.142.123.14	&	165.811	&	1.700	\\
-	213.140.49.13	(213.140.49.13	&	230.069	0.609	\\
-	xe-3-1-1.mpr1.pao1.us.above.net	(64.125.13.113	&	229.511	&	-0.390	\\
-	208.185.52.74.available.above.net	(208.185.52.74	&	392.486	&	2.131	\\
-	xe-1-2-1.pe2.brwy.nsw.aarnet.net.au	(202.158.194.176	&	391.129	&	-0.403	\\
-	ae9.bb1.a.syd.aarnet.net.au	(113.197.15.57	&	514.913	&	1.527	\\
-	so-0-1-0.bb1.b.bne.aarnet.net.au	(202.158.194.54	&	407.555	&	-2.037	\\
-	ge-0-0-0.bb1.a.bne.aarnet.net.au	(202.158.194.213	&	394.376	&	-0.585	\\
-	tengigabitethernet2-1.er2.uq.cpe.aarnet.net.au	(202.158.209.3	&	394.951	&	-0.373	\\
-	gw2.er2.uq.cpe.aarnet.net.au	(113.197.8.34	&	391.479	&	-0.435	\\
-	uq-se1-uq-gw1.router.uq.edu.au	(130.102.159.1	&	392.041	&	-0.373	\\
-	zeus-uqse1.router.uq.edu.au	(130.102.0.242	&	401.994	&	-0.228	\\
-	a82-28.nat.uq.edu.au	(130.102.82.28	&	403.280	&	-0.362	\\
-	wsa-www.soe.uq.edu.au	(130.102.131.70	&	396.128	&	-0.492	\\
-\end{tabular}
-
-~
-
+	et-7-0-0-0-grtbuecu1.red.telefonica-wholesale.net	&	(84.16.9.233	&	30.748	&	-0.399	\\
+	\\	Xe9-0-6-0-grtmiabr3.red.telefonica-wholesale.net	&	(94.142.123.14	&	165.811	&	1.700	\\
+	213.140.49.13	&	(213.140.49.13	&	230.069	0.609	\\
+	xe-3-1-1.mpr1.pao1.us.above.net	&	64.125.13.113	&	229.511	&	-0.390	\\
+	208.185.52.74.available.above.net	&	(208.185.52.74	&	392.486	&	2.131	\\
+	xe-1-2-1.pe2.brwy.nsw.aarnet.net.au	&	(202.158.194.176	&	391.129	&	-0.403	\\
+	ae9.bb1.a.syd.aarnet.net.au	&	(113.197.15.57	&	514.913	&	1.527	\\
+	so-0-1-0.bb1.b.bne.aarnet.net.au	&	(202.158.194.54	&	407.555	&	-2.037	\\
+	ge-0-0-0.bb1.a.bne.aarnet.net.au	&	(202.158.194.213	&	394.376	&	-0.585	\\
+	tengigabitethernet2-1.er2.uq.cpe.aarnet.net.au	&	(202.158.209.3	&	394.951	&	-0.373	\\
+	gw2.er2.uq.cpe.aarnet.net.au	&	(113.197.8.34	&	391.479	&	-0.435	\\
+	uq-se1-uq-gw1.router.uq.edu.au	&	(130.102.159.1	&	392.041	&	-0.373	\\
+	zeus-uqse1.router.uq.edu.au	&	(130.102.0.242	&	401.994	&	-0.228	\\
+	a82-28.nat.uq.edu.au	&	(130.102.82.28	&	403.280	&	-0.362	\\
+	wsa-www.soe.uq.edu.au	&	(130.102.131.70	&	396.128	&	-0.492	\\
 \end{tabular}
 
 ~
