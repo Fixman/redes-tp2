@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[russian,spanish]{babel}
 \usepackage{CJK}
-\usepackage[paper=a4paper, hmargin=1.5cm, bottom=1.5cm, top=3.5cm]{geometry}
+\usepackage[paper=a4paper, hmargin=1.5cm, bottom=.5cm, top=1.5cm]{geometry}
 \usepackage[colorlinks=true, linkcolor=blue]{hyperref} %Links para el indice.
 \usepackage{amsfonts}
 \usepackage{verbatim}
@@ -20,6 +20,7 @@
 \usepackage{sidecap}
 \usepackage[table,dvipsnames]{xcolor}
 \usepackage{bm}
+\usepackage{relsize}
 
 \captionsetup[subfigure]{labelformat=empty}
 
@@ -67,9 +68,23 @@ Integrantes:
 
 \input{resultados.tex}
 
+\newpage
 \section{Conclusiones}
 
-\input{conclusiones.tex}
+Ya que el link intercontinental con menor $Z_{rtt}$ tiene uno m\'as chico que el link
+intracontinental que tiene este valor mayor, podemos ver que es imposible definiar un $\bm{\mu}$ que
+clasifique estos links de esta manera con 100\% de presici\'on. Sin embargo, se puede ver que ambos
+valores son outliers, ya que todos los otros links intracontinentales son menor que $1$ y todos los
+otros links intercontinentales son mayores que estr n\'umero.
+
+~
+
+Con estos valores, podemos definir $\mathlarger{\mathlarger{\bm{\mu = 1}}}$ como resultado, y esto va a poder clasificar los
+links de una manera correcta para todos los links menos los dos extremos. Por otro lado, si se elige
+$\bm{\mu} = 0.780$ \'o $\bm{\mu} = 1.5$ uno de los dos extremos va a tener un valor v\'alido (y solo
+un valor va a ser diferente en el ``mundo real'' que en este an\'alisis), pero como los dos valores
+son outliers, el primer caso va a tener m\'as proabilidad de dar resultados correctos si se le agregan
+m\'as puntos cerca del extremo.
 
 \section{Referencias}
 \begin{itemize}
