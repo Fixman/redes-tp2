@@ -7,7 +7,8 @@ que va debe atravesar el paquete para llegar a destino.
 Mediante este tipo de an\'alisis es posible obtener informaci\'on de gran inter\'es, como por
 ejemplo identificar los enlaces con mayor RTT (determinantes en el c\'alculo del
 RTT ''global'', entre el host origen y el destino). De esta manera es posible caracterizar los distintos
-enlaces: RTT's altos pueden corresponderse a enlaces submarinos, o de reducida velocidad de transmisi\'on.
+enlaces: RTT's altos pueden corresponderse a enlaces submarinos o terrestres de largas distancias, o
+enlaces con poca velocidad de transmisión.
 
 La idea b\'asica del algoritmo consiste en enviar paquetes con TTL's incrementales hacia el nodo destino
 y obtener informaci\'on en funci\'on de los datagramas ICMP obtenidos, tal como muestra el siguiente
@@ -60,7 +61,7 @@ descripto a continuaci\'on.
 
 Un paquete no llega al mismo destino atravesando siempre las mismas rutas. Los nodos intermedios pueden
 caerse o levantarse. Determinados enlaces pueden congestionarse o liberarse en distintos momentos.
-Supongamos que el algoritmo env\'ia hacia el destino un paquete con TTL 10. ?`Qu\'e garant\'ias tenemos de que,
+Supongamos que el algoritmo env\'ia hacia el destino un paquete con TTL 10. ¿`Qu\'e garant\'ias tenemos de que,
 en caso de ser necesario un segundo intento porque no ha llegado ning\'un mensaje de error, el router
 alcanzado luego del d\'ecimo hop sea el mismo? Ninguna. En otras palabras, dependiendo la ruta que siga
 el datagrama, el router alcanzado luego del d\'ecimo hop ser\'a uno u otro.
@@ -73,12 +74,59 @@ distancia es calculado como el promedio de los valores obtenidos por cada intent
 
 
 \subsection{Estimando Enlaces Trasatl\'anticos}
-Suponemos que el tiempo que le toma a un paquete ir de un nodo a otro 
-por tierra es significativamente menor al que le toma atravesar un 
-enlace trasatl\'antico. Por ello, calculamos la distancia en tiempo
-que hay entre los pares de nodos vecinos y luego, asumiendo que los
-mismos siguen una distribuci\'on normal, calculamos el estad\'istico
-Zscore para cada uno de ellos. 
 
-Finalmente fijaremos un umbral de Zscore para determinar qu\'e tramos
-son submarinos. 
+Recordando algunas f\'ormulas pertenecientes a la capa de enlace, sabemos que el delay est\'a determinado
+por la siguiente ecuaci\'on:
+
+~
+
+$delay[seg] = T_{tx} + T_{prop}$, donde $T_{tx}$ es el tiempo de transmisi\'on determinado principalmente
+por la capacidad del canal y la relaci\'on se\~nal ruido dentro del mismo, y el tiempo de propagaci\'on
+est\'a determinado por:
+
+~
+
+$T_{prop} = \frac{D}{V}$, con $D$ la distancia del enlace y $V$ la velocidad de propagaci\'on de la forma
+de onda en el medio f\'isico.
+
+~
+
+El RTT equivale a $2*delay$.
+
+~
+
+Si analizamos exclusivamente la capa de enlace punto a punto del modelo de capas de Internet, podemos
+llegar a la conclusi\'on de que el factor de mayor peso en el c\'alculo del RTT es la distancia del enlace.
+Dado que se env\'ia un \'unico datagrama con una cantidad despreciable de datos de test (caracteres
+ASCII pertenecientes al ''echo request''), el tiempo de transmisi\'on del mismo dentro del enlace es
+\'infimo (independientemente de la velocidad de transmisi\'on de dicho enlace). Por lo tanto, desde este
+punto de vista es l\'ogico pensar que los resultados con mayor valor de RTT corresponder\'an a enlaces
+submarinos. Suponemos que el tiempo que le toma a un paquete ir de un nodo a otro
+por tierra es significativamente menor al que le toma atravesar un
+enlace trasatl\'antico, ya que estos \'ultimos cubren distancias mucho mayores.
+
+Sin embargo, la capa de nivel 1 no es la \'unica que debemos tener en cuenta a la hora de realizar el
+an\'alisis. Podr\'ia suceder que por alg\'un motivo (congesti\'on, por ejemplo), el paquete sea almacenado
+temporalmente en un buffer antes de ser forwardeado hacia el pr\'oximo router. O que alg\'un conflicto
+de \'indole similar suceda a nivel Ethernet. Por lo tanto, estos factores pueden influir
+en un resultado con RTT alto sin que el router involucrado provenga necesariamente de un enlace
+submarino.
+
+~
+
+El \emph{zscore} es una medida que nos permite medir el peso de un hop respecto a los dem\'as. (En
+particular, respecto a la media de todos los hops de la ruta, y considerando tambi\'en el desv\'io
+standard de los datos).
+La f\'ormula utilizada para calcularlo es:
+
+~
+
+$ZRTT_{i} = \frac{RTT_{i} - RTT_{mean}}{SRTT}$
+
+~
+
+$ZRTT_{i}$ representa el RTT para el i-\'esimo hop. Para calcularlo, obtenemos la distancia en tiempo
+que hay entre los pares de nodos vecinos y asumimos que los
+mismos siguen una distribuci\'on normal.
+Finalmente fijamos un umbral de Zscore para determinar los tramos
+son submarinos.
