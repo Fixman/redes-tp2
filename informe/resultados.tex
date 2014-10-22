@@ -246,7 +246,10 @@ Luego el enlace restante ya fue categorizado anteriormente.
 
 ~
 
+An\'alogo al caso de MSU, los valores de ZRTT se concentran alrededor de 0, -0.5, y s\'olo unos pocos superan el valor de 1.5. Estos \'ultimos tienen una buena 
+probabilidad de ser submarinos.
 
+Respecto de los RTT, vemos que se pronuncian crecientemente para los dos primeros saltos descriptos anteriormente (HOPs 3 y 6), pero el tercero pasa desapercibido. Tambi\'en es notorio el pico decreciente del HOP 11, que puede deberse a un $timeout$ para ese HOP.
 
 \subsection{Queensland}
 
@@ -257,10 +260,10 @@ Luego el enlace restante ya fue categorizado anteriormente.
 	Buenos Aires			&	200.51.240.156	&	31.896	&	0.110	&	Continental	\\
 	Buenos Aires (telef\'onica)	&	84.16.9.233	&	30.748	&	-0.399	&	Continental	\\
 	Miami (telef\'onica)		&	94.142.123.14	&	165.811	&	1.700	&	Trasatl\'antico	\\
-	213.140.49.13			&	213.140.49.13	&	230.069	&	0.609	&	Continental	\\
-	xe-3-1-1.mpr1.pao1.us.above.net	&	64.125.13.113	&	229.511	&	-0.390	&	Continental	\\
-	208.185.52.74			&	208.185.52.74	&	392.486	&	2.131	&	Trasatl\'antico	\\
-	xe-1-2-1.pe2.brwy.nsw.aarnet.net.au		&	202.158.194.176	&	391.129	&	-0.403	&	Continental	\\
+	Hermosa Beach			&	213.140.49.13	&	230.069	&	0.609	&	Continental	\\
+	Hermosa Beach	&	64.125.13.113	&	229.511	&	-0.390	&	Continental	\\
+	Sydney 			&	208.185.52.74	&	392.486	&	2.131	&	Trasatl\'antico	\\
+	Sydney 		&	202.158.194.176	&	391.129	&	-0.403	&	Continental	\\
 	Sydney (aarnet)			&	113.197.15.57	&	514.913	&	1.527	&	Trasatl\'antico	\\
 	Brisbane (aarnet)		&	202.158.194.54	&	407.555	&	-2.037	&	Continental	\\
 	Brisbane (aarnet)		&	202.158.194.213	&	394.376	&	-0.585	&	Continental	\\
@@ -277,6 +280,19 @@ Luego el enlace restante ya fue categorizado anteriormente.
 Las ciudades fueron atravesadas en el siguiente orden:
 
 Buenos Aires - Miami - Hermosa Beach - Sydney - Brisbane - Queensland
+
+Siguiendo la regularidad con los casos anteriores, vuelven a destacarse tres enlaces. Buenos Aires - Miami como se vio anteriormente es un enlace submarino que
+est\'a en constante uso puesto que la mayor\'ia de las rutas pasan necesariamente por Estados Unidos. Luego sobresale Hermosa Beach - Sydney por cruzar el 
+oseano pac\'ifico hacia Ocean\'ia y por \'ultimo una particularidad dentro de Sydney que puede deberse al ingreso a la red de aarnet.
+
+\begin{figure}[H]
+	\begin{center}
+		  \includegraphics[scale=0.25]{../results/maps/Queensland.png}
+		  \caption{Mapa de la ruta atravesada para llegar a la universidad de Australia}
+	\end{center}
+\end{figure}
+
+
 
 ~
 
@@ -295,13 +311,11 @@ Buenos Aires - Miami - Hermosa Beach - Sydney - Brisbane - Queensland
 
 ~
 
+Respecto a los ZScores vemos que se distribuyen en su mayoria con valores cercanos a -0.7, y una menor tendencia cerca de 0. 
+Podemos observar que el umbral 1.5 caracteriza mejor a los enlaces como submarinos, aun cuando uno de los que superan dicho umbral no lo sea en realidad.
+Con un $u$ m\'as bajo, por ejemplo 0.5, el enlace Miami - Hermosa Beach pasar\ia tambi\'en a ser significativo cuando no es en absoluto un enlace submarino. 
+Aun asi parece ser logico que su ZRTT sea alto puesto que se recorre una distancia considerable aun siendo terrestre.
 
-
-\begin{figure}[H]
-	\begin{center}
-		  \includegraphics[scale=0.25]{../results/maps/Queensland.png}
-		  \caption{Mapa de la ruta atravesada para llegar a la universidad de Australia}
-	\end{center}
-\end{figure}
-
-\textcolor{red}{mas analisis y grafico de barra IP zscore + umbral}
+La funci\'on de los RTT por HOP es como era de esperarse, de tendencia creciente y con marcados ascensos en los HOPs 3 y 6. Podemos caracterizar a partir de este 
+gr\'afico al HOP 8 (el enlace de alto ZRTT dentro de Sydney) como una anomal\'ia. Si se observan los HOPs anteriormente mencionados, aquellos que se corresponden con
+verdaderos enlaces submarinos, vemos que presentan un ascenso de RTT considerable en la funci\'on que luego no desciende. En cambio para el HOP en cuesti\'on, ese pico en la funci\'on demuestra que para saltos mas alejados el RTT baja por lo tanto no podr\'ia ser un enlace submarino.
