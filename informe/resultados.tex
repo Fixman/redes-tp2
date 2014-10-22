@@ -1,8 +1,8 @@
 Luego de correr todos los experimentos notamos que la direcci\'on IP de los nodos
 no necesariamente refleja su posici\'on geogr\'afica real.
 
-Intentamos hacer uso de la herramienta www.geoiptool.com para orientarnos en 
-el curso de las rutas y algunas veces encontr\'abamos que no ten\'ian sentido las 
+Intentamos hacer uso de la herramienta www.geoiptool.com para orientarnos en
+el curso de las rutas y algunas veces encontr\'abamos que no ten\'ian sentido las
 ubicaciones que nos propon\'ia esta herramienta.
 
 Un ejemplo de esto mismo seria:
@@ -17,7 +17,7 @@ Un ejemplo de esto mismo seria:
 ~
 
 Dicha IP figura en geoiptool como localizada en España. Es decir que de Buenos Aires, la ruta pasar\'a por España antes de llegar a Estados Unidos,
-todo con un RTT medio de 30ms. Esto no parece para nada razonable, pero el nombre del host nos presenta informaci\'on que puede contrastar aquella 
+todo con un RTT medio de 30ms. Esto no parece para nada razonable, pero el nombre del host nos presenta informaci\'on que puede contrastar aquella
 prove\'ida por geoiptool. GRT\textbf{BUE}CU1 indicar\'ia que la IP realmente pertenece a Buenos Aires, algo mucho m\'as l\'ogico.
 
 Afortunadamente capturamos los nombres de los hosts en cada salto y la mayoria tiene indicios de ubicaci\'on en sus
@@ -25,7 +25,7 @@ nombres. Claro que no siempre encontramos hosts 'bien nombrados'.
 
 ~
 
-Otro ejemplo podr\'ia ser \emph{be2384.ccr21.\textbf{lpl}01.atlas.cogentco.com} con el c\'odigo IATA de 
+Otro ejemplo podr\'ia ser \emph{be2384.ccr21.\textbf{lpl}01.atlas.cogentco.com} con el c\'odigo IATA de
 Liverpool.
 
 \subsection{Moscow State University (Rusia)}
@@ -56,10 +56,17 @@ Liverpool.
 	Mosc\'u (runnet)		&	194.85.40.229	&	525.315	&	2.658	&	Trasatl\'antico	\\
 	Mosc\'u (runnet)		&	194.190.254.118	&	357.420	&	-2.798	&	Continental	\\
 	Mosc\'u (runnet)		&	93.180.0.172	&	344.003	&	-0.454	&	Continental	\\
-	Mosc\'u				&	188.44.33.1	&	346.421	&	-0.214	&	Continental	\\ 	
-	Mosc\'u				&	188.44.50.103	&	347.007	&	-0.242	&	Continental	\\	
+	Mosc\'u				&	188.44.33.1	&	346.421	&	-0.214	&	Continental	\\
+	Mosc\'u				&	188.44.50.103	&	347.007	&	-0.242	&	Continental	\\
 
 \end{tabular}
+
+~
+
+Las ciudades fueron atravesadas en el siguiente orden:
+
+Buenos Aires - Miami - Dallas - Kansas - Chicago - Toronto - Montreal - Liverpool - Amsterdam -
+Hamburg - Stockolm - Helsinki - Moscow
 
 ~
 
@@ -113,6 +120,12 @@ Veamos la siguiente tabla.
 
 ~
 
+Las ciudades fueron atravesadas en el siguiente orden:
+
+Buenos Aires - Miami - Ashburn - Dallas - Los \'Angeles - Chongming - Beijing
+
+~
+
 Podemos destacar tres enlaces que superan el umbral de 1.5. Buenos Aires $\rightarrow$ Miami; Miami $\rightarrow$ Ashburn y Los-Angeles $\rightarrow$ Beijing.
 De estos tres, el m\'as preocupante es el segundo, puesto que es un enlace continental, dentro de Estados Unidos.
 
@@ -130,7 +143,7 @@ De estos tres, el m\'as preocupante es el segundo, puesto que es un enlace conti
 ~
 
 \begin{tabular}{lllll}
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\	
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
 	Buenos Aires			&	200.51.240.181	&	37.154	&	0.426	&	Continental	\\
 	Buenos Aires (telef\'onica)	&	84.16.9.233	&	51.008	&	-0.009	&	Continental	\\
 	Miami (telef\'onica)		&	5.53.5.138	&	210.915	&	2.722	&	Trasatl\'antico	\\
@@ -157,6 +170,12 @@ De estos tres, el m\'as preocupante es el segundo, puesto que es un enlace conti
 
 ~
 
+Las ciudades fueron atravesadas en el siguiente orden:
+
+Buenos Aires - Miami - Ashburn - Newark - London - Oxford
+
+~
+
 En este caso destacamos nuevamente tres enlaces que superan el umbral de 1.5. Buenos Aires $\rightarrow$ Miami; Miami $\rightarrow$ Ashburn y Newark $\rightarrow$ Londres.
 Los dos primeros son identicos al caso anterior, nuevamente preocupa el segundo por las mismas razones.
 
@@ -174,7 +193,7 @@ Los dos primeros son identicos al caso anterior, nuevamente preocupa el segundo 
 ~
 
 \begin{tabular}{lllll}
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\	
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
 	Buenos Aires			&	200.51.240.156	&	31.896	&	0.110	&	Continental	\\
 	Buenos Aires (telef\'onica)	&	84.16.9.233	&	30.748	&	-0.399	&	Continental	\\
 	Miami (telef\'onica)		&	94.142.123.14	&	165.811	&	1.700	&	Trasatl\'antico	\\
@@ -194,6 +213,13 @@ Los dos primeros son identicos al caso anterior, nuevamente preocupa el segundo 
 \end{tabular}
 
 ~
+
+Las ciudades fueron atravesadas en el siguiente orden:
+
+Buenos Aires - Miami - Hermosa Beach - Sydney - Brisbane - Queensland
+
+~
+
 
 \begin{figure}[H]
 	\begin{center}
