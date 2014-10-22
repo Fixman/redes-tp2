@@ -1,6 +1,9 @@
 \documentclass[a4paper,11pt]{article}
-\usepackage[paper=a4paper, hmargin=1.5cm, bottom=1.5cm, top=3.5cm]{geometry}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[russian,spanish]{babel}
+\usepackage{CJK}
+\usepackage[paper=a4paper, hmargin=1.5cm, bottom=1.5cm, top=3.5cm]{geometry}
 \usepackage[colorlinks=true, linkcolor=blue]{hyperref} %Links para el indice.
 \usepackage{amsfonts}
 \usepackage{verbatim}
@@ -15,11 +18,13 @@
 \usepackage{amsmath}
 \usepackage{blindtext}
 \usepackage{sidecap}
-\usepackage{color}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{bm}
 
 \captionsetup[subfigure]{labelformat=empty}
 
-% \newcommand{\real}{\hbox{\bf R}}
+\newcommand{\intercontinental}[0]{\rowcolor{Maroon}}
+\newcommand{\highestcontinental}[0]{\cellcolor{Green}}
 
 \title{Traceroute}
 
@@ -64,7 +69,7 @@ Integrantes:
 
 \section{Conclusiones}
 
-%\input{conclusiones.tex}
+\input{conclusiones.tex}
 
 \section{Referencias}
 \begin{itemize}

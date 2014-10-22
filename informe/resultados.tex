@@ -1,5 +1,8 @@
 Luego de correr todos los experimentos notamos que la direcci\'on IP de los nodos
-no necesariamente refleja su posici\'on geogr\'afica real.
+no necesariamente refleja su posici\'on geogr\'afica real; esta es necesaria para
+saber cuales ejes son intercontinentales, y por ende fijar un umbral $\bm{\mu}$ v\'alido.
+
+~
 
 Intentamos hacer uso de la herramienta www.geoiptool.com para orientarnos en
 el curso de las rutas y algunas veces encontr\'abamos que no ten\'ian sentido las
@@ -29,51 +32,72 @@ nombres. Claro que no siempre encontramos hosts 'bien nombrados'.
 Otro ejemplo podr\'ia ser \emph{be2384.ccr21.\textbf{lpl}01.atlas.cogentco.com} con el c\'odigo IATA de
 Liverpool.
 
+~
+
+En las siguientes tablas se muestra la ubicaci\'on (no necesariamente aunque muy probablemente
+correcta) del host en el que termina cada \textit{hop}, su IP, la media estad\'istica del Round Trip
+Time a ese hop, y el Z-score de este host tomando como valor la diferencia de
+tiempo con el host anterior. Como un paquete con TTL igual a 0 terminar\'ia en el cliente en un
+tiempo inf\'initisamente chico, se toma el primer ``host'' con distancia 0.
+
+Para simplificar las tablas y mejorar la comprensi\'on, en las tablas siguientes las filas correspondientes
+a los links cuyos hosts est\'an en diferentes continentes (visto ``a ojo'') est\'an destacados.
+Tambi\'en el link no-intercontinental con Z-score m\'as grande est\'a marcado, ya que va a ser
+an\'alizado luego.
+
 \subsection{Moscow State University (Rusia)}
 
-%\subsubsection{Ruta}
+\subsubsection{Ruta}
 
 ~
 
+\begin{center}
 \begin{tabular}{lllll}
 
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
-	Buenos Aires			&	200.51.240.181	&	31.018	&	0.220	&	Continental	\\
-	Buenos Aires (telef\'onica)	&	94.142.103.153	&	30.104	&	-0.265	&	Continental	\\
-	Miami (telef\'onica)		&	94.142.123.22	&	164.933	&	1.795	&	Intercontinental	\\
-	Dallas (telef\'onica)		&	94.142.127.105	&	199.813	&	0.278	&	Continental	\\
-	Dallas/Ft Worth (cogentco)	&	154.54.13.225	&	221.383	&	0.077	&	Continental	\\
-	Dallas/Ft Worth (cogentco)	&	154.54.7.45	&	212.266	&	-0.389	&	Continental	\\
-	Kansas (cogentco)		&	154.54.2.113	&	214.954	&	-0.210	&	Continental	\\
-	Chicago (cogentco)		&	154.54.6.86	&	215.663	&	-0.240	&	Continental	\\
-	Toronto (cogentco)		&	154.54.27.182	&	228.466	&	-0.056	&	Continental	\\
-	Montreal (cogentco)		&	154.54.30.206	&	226.107	&	-0.286	&	Continental	\\
-	Liverpool (cogentco)		&	154.54.44.138	&	294.383	&	0.785	&	Continental	\\
-	Amsterdam (cogentco)		&	154.54.77.245	&	307.648	&	-0.049	&	Continental	\\
-	Hamburgo (cogentco)		&	154.54.74.122	&	264.320	&	-0.908	&	Continental	\\
-	Estocolmo (cogentco)		&	154.54.63.2	&	327.827	&	0.713	&	Continental	\\
-	Helsinki (cogentco)		&	154.54.62.250	&	332.424	&	-0.181	&	Continental	\\
-	Mosc\'u				&	149.6.58.42	&	333.589	&	-0.233	&	Continental	\\
-	Mosc\'u (runnet)		&	194.85.40.229	&	525.315	&	2.658	&	Intercontinental	\\
-	Mosc\'u (runnet)		&	194.190.254.118	&	357.420	&	-2.798	&	Continental	\\
-	Mosc\'u (runnet)		&	93.180.0.172	&	344.003	&	-0.454	&	Continental	\\
-	Mosc\'u				&	188.44.33.1	&	346.421	&	-0.214	&	Continental	\\
-	Mosc\'u				&	188.44.50.103	&	347.007	&	-0.242	&	Continental	\\
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	\\
+	Buenos Aires			&	200.51.240.181	&	31.018	&	0.220	\\
+	Buenos Aires (telef\'onica)	&	94.142.103.153	&	30.104	&	-0.265	\\
+	\intercontinental
+	Miami (telef\'onica)		&	94.142.123.22	&	164.933	&	1.795	\\
+	Dallas (telef\'onica)		&	94.142.127.105	&	199.813	&	0.278	\\
+	Dallas/Ft Worth (cogentco)	&	154.54.13.225	&	221.383	&	0.077	\\
+	Dallas/Ft Worth (cogentco)	&	154.54.7.45	&	212.266	&	-0.389	\\
+	Kansas (cogentco)		&	154.54.2.113	&	214.954	&	-0.210	\\
+	Chicago (cogentco)		&	154.54.6.86	&	215.663	&	-0.240	\\
+	Toronto (cogentco)		&	154.54.27.182	&	228.466	&	-0.056	\\
+	Montreal (cogentco)		&	154.54.30.206	&	226.107	&	-0.286	\\
+	\intercontinental
+	Liverpool (cogentco)		&	154.54.44.138	&	294.383	&	0.785	\\
+	Amsterdam (cogentco)		&	154.54.77.245	&	307.648	&	-0.049	\\
+	Hamburgo (cogentco)		&	154.54.74.122	&	264.320	&	-0.908	\\
+	Estocolmo (cogentco)		&	154.54.63.2	&	327.827	&	\highestcontinental 0.713	\\
+	Helsinki (cogentco)		&	154.54.62.250	&	332.424	&	-0.181	\\
+	Mosc\'u				&	149.6.58.42	&	333.589	&	-0.233	\\
+	Mosc\'u (runnet)		&	194.85.40.229	&	525.315	&	2.658	\\
+	Mosc\'u (runnet)		&	194.190.254.118	&	357.420	&	-2.798	\\
+	Mosc\'u (runnet)		&	93.180.0.172	&	344.003	&	-0.454	\\
+	Mosc\'u				&	188.44.33.1	&	346.421	&	-0.214	\\
+	Mosc\'u				&	188.44.50.103	&	347.007	&	-0.242	\\
 
 \end{tabular}
+\end{center}
 
 ~
 
 Las ciudades fueron atravesadas en el siguiente orden:
 
-Buenos Aires - Miami - Dallas - Kansas - Chicago - Toronto - Montreal - Liverpool - Amsterdam -
-Hamburg - Stockolm - Helsinki - Moscow
+Buenos Aires $\rightarrow$ Miami $\rightarrow$ Dallas $\rightarrow$ Kansas $\rightarrow$ Chicago
+$\rightarrow$ Toronto $\rightarrow$ Montreal $\rightarrow$ Liverpool $\rightarrow$ Amsterdam
+$\rightarrow$ Hamburg $\rightarrow$ Stockolm $\rightarrow$ Helsinki $\rightarrow$ Moscow
 
 ~
 
-Podemos ver que la ruta pasa de Am\'erica del Sur (BUE) a Am\'erica del Norte (MIA), luego de Canada en America del Norte (Montreal) a Europa (Liverpool) y por \'ultimo llega a Mosk\'u en Asia. En el primero de los saltos descriptos el ZScore es bastante alto, y por eso figura como trasatl\'antico en la tabla.
-Luego el segundo salto no es significativo para un umbral de 1.5, si lo ser\'a con uno de 0.5.
-Dentro de los saltos en Moscu obtenemos un ZScore de 2.66 aun no siendo un enlace submarino. Esto puede deberse al entrar en la Russian University Network.
+Como se puede ver, la conexi\'on primero pasa por varios hosts en los Estados Unidos y en Canad\'a antes de
+pasar por un cable trans\'atlantico entre Montreal y Liverpool. A pesar de que estos dos son por lejos
+los links m\'as largos, el link con Z-score m\'as alto es el que entra a la red en Mosc\'u. Esto se puede
+deber a que los routers que administran internet dan mucha menos prioridad a paquetes ICMP que a paquetes que
+solamente tienen que forwardear a su red. Por esta raz\'on, se puede ignorar sin consecuencias graves y tomar
+al host siguiente con Z-score m\'as grande.
 
 \begin{figure}[H]
 	\begin{center}
@@ -82,35 +106,6 @@ Dentro de los saltos en Moscu obtenemos un ZScore de 2.66 aun no siendo un enlac
 	\end{center}
 \end{figure}
 
-Veamos ahora como se distribuyen los ZScores y los RTT en cada hop.
-
-~
-
-\begin{figure}[H]
-	\center
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=1.0\textwidth]{../results/graficos/MSU_rtt.png}
-		\caption{RTT para MSU}
-	\end{subfigure}
-	~
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=1.0\textwidth]{../results/graficos/MSU_zscore.png}
-		\caption{Zscore para MSU}
-	\end{subfigure}
-\end{figure}
-
-~
-
-Podemos observar a partir de la distribuci\'on de los ZScores que la mayoria de los valores ronda entre 1 y -1 con una tendencia en valores cercanos a cero.
-Por lo tanto si tomamos un umbral de 0.5 podr\'iamos estar cometiendo varios errores, ya que no es com\'un que una ruta atraviese tantos enlaces submarinos. Queremos fijar un umbral de manera tal que todos los saltos cuyo ZScore supere el umbral podamos asegurar (con m\'inimas excepciones)
-que el enlace es submarino. 
-Observemos que existe una cantidad mucho menor de ZScores mayores a 1. Tomar $u = 1.5$ entonces parece razonable, puesto que es l\'ogico pensar que estos enlaces son aquellos que recorren la mayor distancia.
-
-Respecto a los RTT en funci\'on del n\'umero de HOP, esperamos ver una funci\'on m\'onotona creciente, con crecientes abruptas en los enlaces de mayor distancia. Aun as\'i como vimos anteriormente, por efecto de congesti\'on o situaciones similares, esto podr\'ia no suceder exactamente as\'i, pero podemos observar que la tendencia en el gr\'afico es creciente como esperabamos. Sin embargo, dos picos en los HOPs 13 y 16 se comportan de forma distinta. El primero decreciente para Hamburgo, y el segundo creciente dentro de Mosc\'u.
-Puede verse en este gr\'afico que se presentan dos crecidas que se corresponden con los enlaces trasatl\'anticos Am\'erica del Sur - Am\'erica del Norte y 
-este \'ultimo con Europa. Sin embargo el \'ultimo pico es engañoso (HOP 16) y se corresponde con el ingreso a la red runnet.
-
-
 \subsection{Tsinghua}
 
 Para el caso de China, la ruta comienza por Estados Unidos como el caso anterior, pero en lugar de cruzar a Europa por el Este, los paquetes viajan por el pac\'ifico.
@@ -118,41 +113,48 @@ Veamos la siguiente tabla.
 
 ~
 
+\begin{center}
 \begin{tabular}{lllll}
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
-	Buenos Aires			&	200.51.240.156	&	31.907	&	0.259	&	Continental	\\
-	Buenos Aires (telef\'onica)	&	84.16.9.233	&	30.095	&	-0.437	&	Continental	\\
-	Miami (telef\'onica)		&	94.142.121.222	&	165.469	&	2.396	&	Intercontinental	\\
-	Miami (telef\'onica)		&	94.142.122.249	&	165.140	&	-0.407	&	Continental	\\
-	Miami (telef\'onica)		&	84.16.12.238	&	167.934	&	-0.342	&	Continental	\\
-	Miami 				&	63.243.152.45	&	164.176	&	-0.478	&	Continental	\\
-	Ashburn				&	66.198.154.177	&	265.945	&	1.702	&	Intercontinental	\\
-	Dallas				&	66.198.154.118	&	254.661	&	-0.633	&	Continental	\\
-	Dallas				&	66.110.56.6	&	267.287	&	-0.139	&	Continental	\\
-	Los-Angeles			&	66.110.57.82	&	256.103	&	-0.631	&	Continental	\\
-	Los-Angeles			&	66.110.59.182	&	257.170	&	-0.378	&	Continental	\\
-	Chongming				&	101.4.117.213	&	428.694	&	3.143	&	Intercontinental	\\
-	Chongming				&	101.4.117.97	&	428.055	&	-0.413	&	Continental	\\
-	Beijing				&	101.4.116.146	&	424.990	&	-0.463	&	Continental	\\
-	Beijing				&	101.4.118.78	&	427.001	&	-0.358	&	Continental	\\
-	Beijing				&	202.112.38.10	&	425.663	&	-0.428	&	Continental	\\
-	Beijing				&	118.229.4.66	&	425.672	&	-0.400	&	Continental	\\
-	Beijing				&	118.229.4.34	&	438.217	&	-0.141	&	Continental	\\
-	Beijing				&	118.229.2.74	&	430.018	&	-0.569	&	Continental	\\
-	Beijing				&	118.229.2.69	&	425.922	&	-0.485	&	Continental	\\
-	Beijing				&	118.229.8.6	&	427.147	&	-0.375	&	Continental	\\
-	Beijing (Tsinghua)		&	166.111.4.100	&	426.084	&	-0.422	&	Continental	\\
-
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	\\
+	Buenos Aires		&	(200.51.240.156)		&	31.907		&	0.276	\\
+	Buenos Aires		&	(84.16.9.233)		&	30.095		&	-0.467	\\
+	\intercontinental
+	Miami		&	(94.142.121.222)		&	165.469		&	2.558	\\
+	Miami		&	(94.142.122.249)		&	165.140		&	-0.434	\\
+	Miami		&	(84.16.12.238)		&	167.934		&	-0.365	\\
+	Miami		&	(63.243.152.45)		&	164.176		&	-0.510	\\
+	Ashburn		&	(66.198.154.177)		&	215.945		&	\highestcontinental 0.714	\\
+	Dallas		&	(66.198.154.118)		&	254.661		&	0.427	\\
+	Dallas		&	(66.110.56.6)		&	267.287		&	-0.149	\\
+	Los Angeles		&	(66.110.57.82)		&	256.103		&	-0.674	\\
+	Los Angeles		&	(66.110.59.182)		&	257.170		&	-0.403	\\
+	\intercontinental
+	Chongming		&	(101.4.117.213)		&	428.694		&	3.355	\\
+	Chongming		&	(101.4.117.97)		&	428.055		&	-0.441	\\
+	Beijing		&	(101.4.116.146)		&	424.990		&	-0.495	\\
+	Beijing		&	(101.4.118.78)		&	427.001		&	-0.383	\\
+	Beijing		&	(202.112.38.10)		&	425.663		&	-0.456	\\
+	Beijing		&	(118.229.4.66)		&	425.672		&	-0.427	\\
+	Beijing		&	(118.229.4.34)		&	438.217		&	-0.150	\\
+	Beijing		&	(118.229.2.74)		&	430.018		&	-0.608	\\
+	Beijing		&	(118.229.2.69)		&	425.922		&	-0.517	\\
+	Beijing		&	(118.229.8.6)		&	427.147		&	-0.400	\\
+	Beijing (Tsinghua)		&	(166.111.4.100)		&	426.084		&	-0.450	\\
 \end{tabular}
+\end{center}
 
 ~
 
 Las ciudades fueron atravesadas en el siguiente orden:
 
-Buenos Aires - Miami - Ashburn - Dallas - Los \'Angeles - Chongming - Beijing
+Buenos Aires $\rightarrow$ Miami $\rightarrow$ Ashburn $\rightarrow$ Dallas $\rightarrow$ Los
+\'Angeles $\rightarrow$ Chongming $\rightarrow$ Beijing
 
-Podemos destacar tres enlaces que superan el umbral de 1.5. Buenos Aires $\rightarrow$ Miami; Miami $\rightarrow$ Ashburn y Los-Angeles $\rightarrow$ Beijing.
-De estos tres, el m\'as preocupante es el segundo, puesto que es un enlace continental, dentro de Estados Unidos.
+~
+
+El link continental m\'as largo, en Ashburn, tiene un Z-score de 0.714. Aunque es claramente un
+outlier, lo podemos usar para la medici\'on de $\bm{\mu}$. El link intercontinental m\'as corto
+tiene un Z-score de 2.558.
 
 \begin{figure}[H]
 	\begin{center}
@@ -161,68 +163,49 @@ De estos tres, el m\'as preocupante es el segundo, puesto que es un enlace conti
 	\end{center}
 \end{figure}
 
-Nuevamente presentamos los gr\'aficos correspondientes a la distribucion de ZScores y los RTT.
-
-~
-
-\begin{figure}[H]
-	\center
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=1.0\textwidth]{../results/graficos/Tsinghua_rtt.png}
-		\caption{RTT para Tsinghua}
-	\end{subfigure}
-	~
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=1.0\textwidth]{../results/graficos/Tsinghua_zscore.png}
-		\caption{Zscore para Tsinghua}
-	\end{subfigure}
-\end{figure}
-
-~
-
-En este caso, los valores de ZScores en su mayoria rondan en -0.5, y en menor medida cerca de cero. Para este caso en particular, tomar un umbral de 0.5 no parece il\'ogico, pero vemos que lo mismo aplica para $u = 1.5$, dado que los enlaces de mayor ZScore superan el 1.7. 
-
-Con respecto a los RTT en funci\'on del n\'umero de HOP, nuevamente esperamos ver una funci\'on m\'onotona creciente, con crecientes abruptas en los enlaces de mayor distancia. En esta caso en particular la funci\'on se comporta de manera m\'as esperada que en el caso anterior. Asociamos los tres piscos de RTT con los enlaces de mayor distancia marcados con color rojo en el mapa anterior, conjuntamente con el enlace continental dentro de EEUU que se disparo en ZScore (Miami - Ashburn).
-
 \subsection{Oxford}
 
 ~
 
+\begin{center}
 \begin{tabular}{lllll}
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
-	Buenos Aires			&	200.51.240.181	&	37.154	&	0.426	&	Continental	\\
-	Buenos Aires (telef\'onica)	&	84.16.9.233	&	51.008	&	-0.009	&	Continental	\\
-	Miami (telef\'onica)		&	5.53.5.138	&	210.915	&	2.722	&	Intercontinental	\\
-	Miami (telef\'onica)		&	94.142.123.5	&	174.734	&	-0.945	&	Continental	\\
-	Miami (as6453)			&	63.243.152.45	&	175.240	&	-0.259	&	Continental	\\
-	Ashburn (as6453)		&	66.198.154.177	&	293.857	&	1.950	&	Intercontinental	\\
-	Ashburn (as6453)		&	216.6.87.1	&	286.600	&	-0.404	&	Continental	\\
-	Newark (as6453)			&	216.6.87.138	&	277.667	&	-0.435	&	Continental	\\
-	Newark (as6453)			&	66.198.70.1	&	307.315	&	0.286	&	Continental	\\
-	Londres (as6453)		&	66.198.70.26	&	403.133	&	1.523	&	Intercontinental	\\
-	Londres (as6453)		&	80.231.130.42	&	298.757	&	-2.220	&	Continental	\\
-	195.219.100.82			&	195.219.100.82	&	285.687	&	-0.513	&	Continental	\\
-	Londres				&	146.97.33.2	&	289.063	&	-0.205	&	Continental	\\
-	Londres				&	146.97.37.206	&	291.484	&	-0.223	&	Continental	\\
-	Londres				&	193.63.108.129	&	281.783	&	-0.450	&	Continental	\\
-	Londres				&	193.63.108.134	&	294.226	&	-0.036	&	Continental	\\
-	Londres				&	193.63.109.114	&	289.814	&	-0.351	&	Continental	\\
-	Londres				&	192.76.21.21	&	280.879	&	-0.435	&	Continental	\\
-	Londres				&	192.76.22.201	&	282.251	&	-0.243	&	Continental	\\
-	Londres				&	192.76.32.66	&	286.466	&	-0.190	&	Continental	\\
-	Londres				&	129.67.242.155	&	301.388	&	0.011	&	Continental	\\
-
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	\\
+	Buenos Aires		&	(200.51.240.181)		&	37.154		&	0.454	\\
+	Buenos Aires		&	(84.16.9.233)		&	51.008		&	-0.010	\\
+	\intercontinental
+	Miami		&	(5.53.5.138)		&	210.915		&	2.899	\\
+	Miami		&	(94.142.123.5)		&	174.734		&	-1.006	\\
+	Miami		&	(63.243.152.45)		&	175.240		&	-0.276	\\
+	Ashburn		&	(66.198.154.177)		&	210.857		&	0.424	\\
+	Ashburn		&	(216.6.87.1)		&	286.600		&	\highestcontinental 1.223	\\
+	Newark		&	(216.6.87.138)		&	277.667		&	-0.464	\\
+	Newark		&	(66.198.70.1)		&	307.315		&	0.305	\\
+	\intercontinental
+	Londres		&	(66.198.70.26)		&	403.133		&	1.622	\\
+	Londres		&	(80.231.130.42)		&	298.757		&	-2.365	\\
+	Londres		&	(195.219.100.82)		&	285.687		&	-0.546	\\
+	Londres		&	(146.97.33.2)		&	289.063		&	-0.219	\\
+	Londres		&	(146.97.37.206)		&	291.484		&	-0.238	\\
+	Londres		&	(193.63.108.129)		&	281.783		&	-0.479	\\
+	Londres		&	(193.63.108.134)		&	294.226		&	-0.038	\\
+	Londres		&	(193.63.109.114)		&	289.814		&	-0.374	\\
+	Londres		&	(192.76.21.21)		&	280.879		&	-0.464	\\
+	Londres		&	(192.76.22.201)		&	282.251		&	-0.259	\\
+	Londres		&	(192.76.32.66)		&	286.466		&	-0.202	\\
+	Londres (Oxford)		&	(129.67.242.155)		&	301.388		&	0.011	\\
 \end{tabular}
+\end{center}
 
 ~
 
 Las ciudades fueron atravesadas en el siguiente orden:
 
-Buenos Aires - Miami - Ashburn - Newark - London - Oxford
+Buenos Aires $\rightarrow$ Miami $\rightarrow$ Ashburn $\rightarrow$ Newark $\rightarrow$ London $\rightarrow$ Oxford
 
-Nuevamente se destacan tres enlaces por superar el umbral de 1.5. Buenos Aires $\rightarrow$ Miami; Miami $\rightarrow$ Ashburn y Newark $\rightarrow$ Londres.
-El primero y el \'ultimo se corresponden con enlaces submarinos, por lo cual es esperado que sus ZScores superen dicho umbral. 
-Luego el enlace restante ya fue categorizado anteriormente. 
+~
+
+En este caso el link a Ashburn tambi\'en es el que tiene el Z-score m\'as alto entre los links
+continentales con 1.223, mientras que el link intercontinental m\'as bajo es de 1.622.
 
 \begin{figure}[H]
 	\begin{center}
@@ -231,61 +214,43 @@ Luego el enlace restante ya fue categorizado anteriormente.
 	\end{center}
 \end{figure}
 
-~
-
-\begin{figure}[H]
-	\center
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=1.0\textwidth]{../results/graficos/Oxford_rtt.png}
-		\caption{RTT para Oxford}
-	\end{subfigure}
-	~
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=1.0\textwidth]{../results/graficos/Oxford_zscore.png}
-		\caption{Zscore para Oxford}
-	\end{subfigure}
-\end{figure}
-
-~
-
-An\'alogo al caso de MSU, los valores de ZRTT se concentran alrededor de 0, -0.5, y s\'olo unos pocos superan el valor de 1.5. Estos \'ultimos tienen una buena 
-probabilidad de ser submarinos.
-
-Respecto de los RTT, vemos que se pronuncian crecientemente para los dos primeros saltos descriptos anteriormente (HOPs 3 y 6), pero el tercero pasa desapercibido. Tambi\'en es notorio el pico decreciente del HOP 11, que puede deberse a un $timeout$ para ese HOP.
-
 \subsection{Queensland}
 
 ~
 
-\begin{tabular}{lllll}
-	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
-	Buenos Aires			&	200.51.240.156	&	31.896	&	0.110	&	Continental	\\
-	Buenos Aires (telef\'onica)	&	84.16.9.233	&	30.748	&	-0.399	&	Continental	\\
-	Miami (telef\'onica)		&	94.142.123.14	&	165.811	&	1.700	&	Intercontinental	\\
-	213.140.49.13			&	213.140.49.13	&	230.069	&	0.609	&	Continental	\\
-	xe-3-1-1.mpr1.pao1.us.above.net	&	64.125.13.113	&	229.511	&	-0.390	&	Continental	\\
-	208.185.52.74			&	208.185.52.74	&	392.486	&	2.131	&	Intercontinental	\\
-	xe-1-2-1.pe2.brwy.nsw.aarnet.net.au		&	202.158.194.176	&	391.129	&	-0.403	&	Continental	\\
-	Sydney (aarnet)			&	113.197.15.57	&	514.913	&	1.527	&	Intercontinental	\\
-	Brisbane (aarnet)		&	202.158.194.54	&	407.555	&	-2.037	&	Continental	\\
-	Brisbane (aarnet)		&	202.158.194.213	&	394.376	&	-0.585	&	Continental	\\
-	Queensland (aarnet)		&	202.158.209.3	&	394.951	&	-0.373	&	Continental	\\
-	Queensland (aarnet)		&	113.197.8.34	&	391.479	&	-0.435	&	Continental	\\
-	Queensland			&	130.102.159.1	&	392.041	&	-0.373	&	Continental	\\
-	Queensland			&	130.102.0.242	&	401.994	&	-0.228	&	Continental	\\
-	Queensland			&	130.102.82.28	&	403.280	&	-0.362	&	Continental	\\
-	Queensland			&	130.102.131.70	&	396.128	&	-0.492	&	Continental	\\
+\begin{center}
+\begin{tabular}{llllll}
+	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	\\
+		Buenos Aires		&	(200.51.240.156)		&	31.896		&	0.140	\\
+		Buenos Aires		&	(84.16.9.233)		&	30.748		&	-0.509	\\
+		\intercontinental
+		Miami		&	(94.142.123.14)		&	165.811		&	2.170	\\
+		??? (213.140.49.13)		&	(213.140.49.13)		&	230.069		&	\highestcontinental 0.776	\\
+		Palo Alto		&	(64.125.13.113)		&	229.511		&	-0.497	\\
+		\intercontinental
+		Sydney		&	(208.185.52.74)		&	392.486		&	2.720	\\
+		Sydney		&	(202.158.194.176)		&	391.129		&	-0.513	\\
+		Sydney		&	(113.197.15.57)		&	419.913		&	0.079	\\
+		Brisbane		&	(202.158.194.54)		&	407.555		&	-0.729	\\
+		Brisbane		&	(202.158.194.213)		&	394.376		&	-0.745	\\
+		Queensland		&	(202.158.209.3)		&	394.951		&	-0.475	\\
+		Queensland		&	(113.197.8.34)		&	391.479		&	-0.555	\\
+		Queensland		&	(130.102.159.1)		&	392.041		&	-0.475	\\
+		Queensland		&	(130.102.0.242)		&	401.994		&	-0.291	\\
+		Queensland		&	(130.102.82.28)		&	403.280		&	-0.461	\\
+		Queensland		&	(130.102.131.70)		&	396.128		&	-0.627	\\
 \end{tabular}
+\end{center}
 
 ~
 
 Las ciudades fueron atravesadas en el siguiente orden:
+Buenos Aires $\rightarrow$ Miami $\rightarrow$ Hermosa Beach $\rightarrow$ Sydney $\rightarrow$ Brisbane $\rightarrow$ Queensland
 
-Buenos Aires - Miami - Hermosa Beach - Sydney - Brisbane - Queensland
+Aqu\'i el link continental con mayor Z-score tiene uno de 2.720, mientras que el link continental con mayor
+Z-score es de 0.776.
 
-Siguiendo la regularidad con los casos anteriores, vuelven a destacarse tres enlaces. Buenos Aires - Miami como se vio anteriormente es un enlace submarino que
-est\'a en constante uso puesto que la mayor\'ia de las rutas pasan necesariamente por Estados Unidos. Luego sobresale Hermosa Beach - Sydney por cruzar el 
-oseano pac\'ifico hacia Ocean\'ia y por \'ultimo una particularidad dentro de Sydney que puede deberse al ingreso a la red de aarnet.
+~
 
 \begin{figure}[H]
 	\begin{center}
@@ -294,30 +259,6 @@ oseano pac\'ifico hacia Ocean\'ia y por \'ultimo una particularidad dentro de Sy
 	\end{center}
 \end{figure}
 
-
-
-~
-
-\begin{figure}[H]
-	\center
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=1.0\textwidth]{../results/graficos/Queensland_rtt.png}
-		\caption{RTT para Queensland}
-	\end{subfigure}
-	~
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=1.0\textwidth]{../results/graficos/Queensland_zscore.png}
-		\caption{Zscore para Queensland}
-	\end{subfigure}
-\end{figure}
-
-~
-
-Respecto a los ZScores vemos que se distribuyen en su mayoria con valores cercanos a -0.7, y una menor tendencia cerca de 0. 
-Podemos observar que el umbral 1.5 caracteriza mejor a los enlaces como submarinos, aun cuando uno de los que superan dicho umbral no lo sea en realidad.
-Con un $u$ m\'as bajo, por ejemplo 0.5, el enlace Miami - Hermosa Beach pasar\ia tambi\'en a ser significativo cuando no es en absoluto un enlace submarino. 
-Aun asi parece ser logico que su ZRTT sea alto puesto que se recorre una distancia considerable aun siendo terrestre.
-
-La funci\'on de los RTT por HOP es como era de esperarse, de tendencia creciente y con marcados ascensos en los HOPs 3 y 6. Podemos caracterizar a partir de este 
-gr\'afico al HOP 8 (el enlace de alto ZRTT dentro de Sydney) como una anomal\'ia. Si se observan los HOPs anteriormente mencionados, aquellos que se corresponden con
-verdaderos enlaces submarinos, vemos que presentan un ascenso de RTT considerable en la funci\'on que luego no desciende. En cambio para el HOP en cuesti\'on, ese pico en la funci\'on demuestra que para saltos mas alejados el RTT baja por lo tanto no podr\'ia ser un enlace submarino.
+Entre todos los hosts, el link intercontinental con Z-score m\'as bajo es el de Montreal a
+Liverpool, con $Z_{rtt} = 0.785$, mientras que el link intracontinenteal con Z-score m\'as alto es
+uno de un host a otro en la ciudad as Ashburn, con $Z_{rtt} = 1.233.
