@@ -40,7 +40,7 @@ Liverpool.
 	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
 	Buenos Aires			&	200.51.240.181	&	31.018	&	0.220	&	Continental	\\
 	Buenos Aires (telef\'onica)	&	94.142.103.153	&	30.104	&	-0.265	&	Continental	\\
-	Miami (telef\'onica)		&	94.142.123.22	&	164.933	&	1.795	&	Trasatl\'antico	\\
+	Miami (telef\'onica)		&	94.142.123.22	&	164.933	&	1.795	&	Intercontinental	\\
 	Dallas (telef\'onica)		&	94.142.127.105	&	199.813	&	0.278	&	Continental	\\
 	Dallas/Ft Worth (cogentco)	&	154.54.13.225	&	221.383	&	0.077	&	Continental	\\
 	Dallas/Ft Worth (cogentco)	&	154.54.7.45	&	212.266	&	-0.389	&	Continental	\\
@@ -54,7 +54,7 @@ Liverpool.
 	Estocolmo (cogentco)		&	154.54.63.2	&	327.827	&	0.713	&	Continental	\\
 	Helsinki (cogentco)		&	154.54.62.250	&	332.424	&	-0.181	&	Continental	\\
 	Mosc\'u				&	149.6.58.42	&	333.589	&	-0.233	&	Continental	\\
-	Mosc\'u (runnet)		&	194.85.40.229	&	525.315	&	2.658	&	Trasatl\'antico	\\
+	Mosc\'u (runnet)		&	194.85.40.229	&	525.315	&	2.658	&	Intercontinental	\\
 	Mosc\'u (runnet)		&	194.190.254.118	&	357.420	&	-2.798	&	Continental	\\
 	Mosc\'u (runnet)		&	93.180.0.172	&	344.003	&	-0.454	&	Continental	\\
 	Mosc\'u				&	188.44.33.1	&	346.421	&	-0.214	&	Continental	\\
@@ -71,7 +71,7 @@ Hamburg - Stockolm - Helsinki - Moscow
 
 ~
 
-\textcolor{red}{Podemos ver que la ruta pasa de Am\'erica del Sur (BUE) a Am\'erica del Norte (MIA), luego de Canada en America del Norte (Montreal) a Europa (Liverpool) y por \'ultimo llega a Mosk\'u en Asia. En el primero de los saltos descriptos el ZScore es bastante alto, y por eso figura como trasatl\'antico en la tabla.
+\textcolor{red}{Podemos ver que la ruta pasa de Am\'erica del Sur (BUE) a Am\'erica del Norte (MIA), luego de Canada en America del Norte (Montreal) a Europa (Liverpool) y por \'ultimo llega a Mosk\'u en Asia. En el primero de los saltos descriptos el ZScore es bastante alto, y por eso figura como intercontinental en la tabla.
 Luego el segundo salto no es significativo para un umbral de 1.5, si lo ser\'a con uno de 0.5.
 Dentro de los saltos en Moscu obtenemos un ZScore de 2.66 aun no siendo un enlace submarino. Esto puede deberse al entrar en la Russian University Network.}
 \textcolor{blue}{ESTO AHORA HAY QUE VERLO BIEN, DEPENDE MUCHO DEL ANALISIS QUE HAGAMOS PARA EL UMBRAL, YA QUE EL TIPO SE CORRESPONDE CON ESO.}
@@ -96,16 +96,16 @@ Veamos la siguiente tabla.
 	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
 	Buenos Aires			&	200.51.240.156	&	31.907	&	0.259	&	Continental	\\
 	Buenos Aires (telef\'onica)	&	84.16.9.233	&	30.095	&	-0.437	&	Continental	\\
-	Miami (telef\'onica)		&	94.142.121.222	&	165.469	&	2.396	&	Trasatl\'antico	\\
+	Miami (telef\'onica)		&	94.142.121.222	&	165.469	&	2.396	&	Intercontinental	\\
 	Miami (telef\'onica)		&	94.142.122.249	&	165.140	&	-0.407	&	Continental	\\
 	Miami (telef\'onica)		&	84.16.12.238	&	167.934	&	-0.342	&	Continental	\\
 	Miami 				&	63.243.152.45	&	164.176	&	-0.478	&	Continental	\\
-	Ashburn				&	66.198.154.177	&	265.945	&	1.702	&	Trasatl\'antico	\\
+	Ashburn				&	66.198.154.177	&	265.945	&	1.702	&	Intercontinental	\\
 	Dallas				&	66.198.154.118	&	254.661	&	-0.633	&	Continental	\\
 	Dallas				&	66.110.56.6	&	267.287	&	-0.139	&	Continental	\\
 	Los-Angeles			&	66.110.57.82	&	256.103	&	-0.631	&	Continental	\\
 	Los-Angeles			&	66.110.59.182	&	257.170	&	-0.378	&	Continental	\\
-	Chongming				&	101.4.117.213	&	428.694	&	3.143	&	Trasatl\'antico	\\
+	Chongming				&	101.4.117.213	&	428.694	&	3.143	&	Intercontinental	\\
 	Chongming				&	101.4.117.97	&	428.055	&	-0.413	&	Continental	\\
 	Beijing				&	101.4.116.146	&	424.990	&	-0.463	&	Continental	\\
 	Beijing				&	101.4.118.78	&	427.001	&	-0.358	&	Continental	\\
@@ -147,14 +147,14 @@ De estos tres, el m\'as preocupante es el segundo, puesto que es un enlace conti
 	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
 	Buenos Aires			&	200.51.240.181	&	37.154	&	0.426	&	Continental	\\
 	Buenos Aires (telef\'onica)	&	84.16.9.233	&	51.008	&	-0.009	&	Continental	\\
-	Miami (telef\'onica)		&	5.53.5.138	&	210.915	&	2.722	&	Trasatl\'antico	\\
+	Miami (telef\'onica)		&	5.53.5.138	&	210.915	&	2.722	&	Intercontinental	\\
 	Miami (telef\'onica)		&	94.142.123.5	&	174.734	&	-0.945	&	Continental	\\
 	Miami (as6453)			&	63.243.152.45	&	175.240	&	-0.259	&	Continental	\\
-	Ashburn (as6453)		&	66.198.154.177	&	293.857	&	1.950	&	Trasatl\'antico	\\
+	Ashburn (as6453)		&	66.198.154.177	&	293.857	&	1.950	&	Intercontinental	\\
 	Ashburn (as6453)		&	216.6.87.1	&	286.600	&	-0.404	&	Continental	\\
 	Newark (as6453)			&	216.6.87.138	&	277.667	&	-0.435	&	Continental	\\
 	Newark (as6453)			&	66.198.70.1	&	307.315	&	0.286	&	Continental	\\
-	Londres (as6453)		&	66.198.70.26	&	403.133	&	1.523	&	Trasatl\'antico	\\
+	Londres (as6453)		&	66.198.70.26	&	403.133	&	1.523	&	Intercontinental	\\
 	Londres (as6453)		&	80.231.130.42	&	298.757	&	-2.220	&	Continental	\\
 	195.219.100.82			&	195.219.100.82	&	285.687	&	-0.513	&	Continental	\\
 	Londres				&	146.97.33.2	&	289.063	&	-0.205	&	Continental	\\
@@ -197,12 +197,12 @@ Los dos primeros son identicos al caso anterior, nuevamente preocupa el segundo 
 	\textit{\textbf{Ubicaci\'on}}	&	\textit{\textbf{IP}}	&	\textit{\textbf{RTT(media) ms}}	&	\textit{\textbf{ZScore}}	&	\textit{\textbf{Tipo}}	\\
 	Buenos Aires			&	200.51.240.156	&	31.896	&	0.110	&	Continental	\\
 	Buenos Aires (telef\'onica)	&	84.16.9.233	&	30.748	&	-0.399	&	Continental	\\
-	Miami (telef\'onica)		&	94.142.123.14	&	165.811	&	1.700	&	Trasatl\'antico	\\
+	Miami (telef\'onica)		&	94.142.123.14	&	165.811	&	1.700	&	Intercontinental	\\
 	213.140.49.13			&	213.140.49.13	&	230.069	&	0.609	&	Continental	\\
 	xe-3-1-1.mpr1.pao1.us.above.net	&	64.125.13.113	&	229.511	&	-0.390	&	Continental	\\
-	208.185.52.74			&	208.185.52.74	&	392.486	&	2.131	&	Trasatl\'antico	\\
+	208.185.52.74			&	208.185.52.74	&	392.486	&	2.131	&	Intercontinental	\\
 	xe-1-2-1.pe2.brwy.nsw.aarnet.net.au		&	202.158.194.176	&	391.129	&	-0.403	&	Continental	\\
-	Sydney (aarnet)			&	113.197.15.57	&	514.913	&	1.527	&	Trasatl\'antico	\\
+	Sydney (aarnet)			&	113.197.15.57	&	514.913	&	1.527	&	Intercontinental	\\
 	Brisbane (aarnet)		&	202.158.194.54	&	407.555	&	-2.037	&	Continental	\\
 	Brisbane (aarnet)		&	202.158.194.213	&	394.376	&	-0.585	&	Continental	\\
 	Queensland (aarnet)		&	202.158.209.3	&	394.951	&	-0.373	&	Continental	\\
