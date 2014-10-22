@@ -31,7 +31,7 @@ Liverpool.
 
 \subsection{Moscow State University (Rusia)}
 
-\subsubsection{Ruta}
+%\subsubsection{Ruta}
 
 ~
 
@@ -69,12 +69,15 @@ Las ciudades fueron atravesadas en el siguiente orden:
 Buenos Aires - Miami - Dallas - Kansas - Chicago - Toronto - Montreal - Liverpool - Amsterdam -
 Hamburg - Stockolm - Helsinki - Moscow
 
+<<<<<<< HEAD
 ~
 
 \textcolor{red}{Podemos ver que la ruta pasa de Am\'erica del Sur (BUE) a Am\'erica del Norte (MIA), luego de Canada en America del Norte (Montreal) a Europa (Liverpool) y por \'ultimo llega a Mosk\'u en Asia. En el primero de los saltos descriptos el ZScore es bastante alto, y por eso figura como intercontinental en la tabla.
+=======
+Podemos ver que la ruta pasa de Am\'erica del Sur (BUE) a Am\'erica del Norte (MIA), luego de Canada en America del Norte (Montreal) a Europa (Liverpool) y por \'ultimo llega a Mosk\'u en Asia. En el primero de los saltos descriptos el ZScore es bastante alto, y por eso figura como trasatl\'antico en la tabla.
+>>>>>>> 812c609368861aed99f00b685ff4f320043d13fe
 Luego el segundo salto no es significativo para un umbral de 1.5, si lo ser\'a con uno de 0.5.
-Dentro de los saltos en Moscu obtenemos un ZScore de 2.66 aun no siendo un enlace submarino. Esto puede deberse al entrar en la Russian University Network.}
-\textcolor{blue}{ESTO AHORA HAY QUE VERLO BIEN, DEPENDE MUCHO DEL ANALISIS QUE HAGAMOS PARA EL UMBRAL, YA QUE EL TIPO SE CORRESPONDE CON ESO.}
+Dentro de los saltos en Moscu obtenemos un ZScore de 2.66 aun no siendo un enlace submarino. Esto puede deberse al entrar en la Russian University Network.
 
 \begin{figure}[H]
 	\begin{center}
@@ -83,7 +86,34 @@ Dentro de los saltos en Moscu obtenemos un ZScore de 2.66 aun no siendo un enlac
 	\end{center}
 \end{figure}
 
-\textcolor{red}{mas analisis y grafico de barra IP zscore + umbral}
+Veamos ahora como se distribuyen los ZScores y los RTT en cada hop.
+
+~
+
+\begin{figure}[H]
+	\center
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=1.0\textwidth]{../results/graficos/MSU_rtt.png}
+		\caption{RTT para MSU}
+	\end{subfigure}
+	~
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=1.0\textwidth]{../results/graficos/MSU_zscore.png}
+		\caption{Zscore para MSU}
+	\end{subfigure}
+\end{figure}
+
+~
+
+Podemos observar a partir de la distribuci\'on de los ZScores que la mayoria de los valores ronda entre 1 y -1 con una tendencia en valores cercanos a cero.
+Por lo tanto si tomamos un umbral de 0.5 podr\'iamos estar cometiendo varios errores, ya que no es com\'un que una ruta atraviese tantos enlaces submarinos. Queremos fijar un umbral de manera tal que todos los saltos cuyo ZScore supere el umbral podamos asegurar (con m\'inimas excepciones)
+que el enlace es submarino. 
+Observemos que existe una cantidad mucho menor de ZScores mayores a 1. Tomar $u = 1.5$ entonces parece razonable, puesto que es l\'ogico pensar que estos enlaces son aquellos que recorren la mayor distancia.
+
+Respecto a los RTT en funci\'on del n\'umero de HOP, esperamos ver una funci\'on m\'onotona creciente, con crecientes abruptas en los enlaces de mayor distancia. Aun as\'i como vimos anteriormente, por efecto de congesti\'on o situaciones similares, esto podr\'ia no suceder exactamente as\'i, pero podemos observar que la tendencia en el gr\'afico es creciente como esperabamos. Sin embargo, dos picos en los HOPs 13 y 16 se comportan de forma distinta. El primero decreciente para Hamburgo, y el segundo creciente dentro de Mosc\'u.
+Puede verse en este gr\'afico que se presentan dos crecidas que se corresponden con los enlaces trasatl\'anticos Am\'erica del Sur - Am\'erica del Norte y 
+este \'ultimo con Europa. Sin embargo el \'ultimo pico es engañoso (HOP 16) y se corresponde con el ingreso a la red runnet.
+
 
 \subsection{Tsinghua}
 
@@ -125,8 +155,6 @@ Las ciudades fueron atravesadas en el siguiente orden:
 
 Buenos Aires - Miami - Ashburn - Dallas - Los \'Angeles - Chongming - Beijing
 
-~
-
 Podemos destacar tres enlaces que superan el umbral de 1.5. Buenos Aires $\rightarrow$ Miami; Miami $\rightarrow$ Ashburn y Los-Angeles $\rightarrow$ Beijing.
 De estos tres, el m\'as preocupante es el segundo, puesto que es un enlace continental, dentro de Estados Unidos.
 
@@ -137,7 +165,28 @@ De estos tres, el m\'as preocupante es el segundo, puesto que es un enlace conti
 	\end{center}
 \end{figure}
 
-\textcolor{red}{mas analisis y grafico de barra IP zscore + umbral}
+Nuevamente presentamos los gr\'aficos correspondientes a la distribucion de ZScores y los RTT.
+
+~
+
+\begin{figure}[H]
+	\center
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=1.0\textwidth]{../results/graficos/Tsinghua_rtt.png}
+		\caption{RTT para Tsinghua}
+	\end{subfigure}
+	~
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=1.0\textwidth]{../results/graficos/Tsinghua_zscore.png}
+		\caption{Zscore para Tsinghua}
+	\end{subfigure}
+\end{figure}
+
+~
+
+En este caso, los valores de ZScores en su mayoria rondan en -0.5, y en menor medida cerca de cero. Para este caso en particular, tomar un umbral de 0.5 no parece il\'ogico, pero vemos que lo mismo aplica para $u = 1.5$, dado que los enlaces de mayor ZScore superan el 1.7. 
+
+Con respecto a los RTT en funci\'on del n\'umero de HOP, nuevamente esperamos ver una funci\'on m\'onotona creciente, con crecientes abruptas en los enlaces de mayor distancia. En esta caso en particular la funci\'on se comporta de manera m\'as esperada que en el caso anterior. Asociamos los tres piscos de RTT con los enlaces de mayor distancia marcados con color rojo en el mapa anterior, conjuntamente con el enlace continental dentro de EEUU que se disparo en ZScore (Miami - Ashburn).
 
 \subsection{Oxford}
 
@@ -175,10 +224,9 @@ Las ciudades fueron atravesadas en el siguiente orden:
 
 Buenos Aires - Miami - Ashburn - Newark - London - Oxford
 
-~
-
-En este caso destacamos nuevamente tres enlaces que superan el umbral de 1.5. Buenos Aires $\rightarrow$ Miami; Miami $\rightarrow$ Ashburn y Newark $\rightarrow$ Londres.
-Los dos primeros son identicos al caso anterior, nuevamente preocupa el segundo por las mismas razones.
+Nuevamente se destacan tres enlaces por superar el umbral de 1.5. Buenos Aires $\rightarrow$ Miami; Miami $\rightarrow$ Ashburn y Newark $\rightarrow$ Londres.
+El primero y el \'ultimo se corresponden con enlaces submarinos, por lo cual es esperado que sus ZScores superen dicho umbral. 
+Luego el enlace restante ya fue categorizado anteriormente. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -187,7 +235,24 @@ Los dos primeros son identicos al caso anterior, nuevamente preocupa el segundo 
 	\end{center}
 \end{figure}
 
-\textcolor{red}{mas analisis y grafico de barra IP zscore + umbral}
+~
+
+\begin{figure}[H]
+	\center
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=1.0\textwidth]{../results/graficos/Oxford_rtt.png}
+		\caption{RTT para Oxford}
+	\end{subfigure}
+	~
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=1.0\textwidth]{../results/graficos/Oxford_zscore.png}
+		\caption{Zscore para Oxford}
+	\end{subfigure}
+\end{figure}
+
+~
+
+
 
 \subsection{Queensland}
 
@@ -220,6 +285,22 @@ Las ciudades fueron atravesadas en el siguiente orden:
 Buenos Aires - Miami - Hermosa Beach - Sydney - Brisbane - Queensland
 
 ~
+
+\begin{figure}[H]
+	\center
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=1.0\textwidth]{../results/graficos/Queensland_rtt.png}
+		\caption{RTT para Queensland}
+	\end{subfigure}
+	~
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=1.0\textwidth]{../results/graficos/Queensland_zscore.png}
+		\caption{Zscore para Queensland}
+	\end{subfigure}
+\end{figure}
+
+~
+
 
 
 \begin{figure}[H]
